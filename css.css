@@ -1,9 +1,19 @@
 *{margin: 0; padding: 0;} 
+a.nav-link {
+    font-family: seoge ui;
+    text-transform: uppercase;
+    font-size: 13px;
+    line-height: 79px;
+    color: #101010;
+}
+li.nav-item{
+	margin: 0 17px;
+	padding: 0;
+}
+nav.navbar.navbar-light.bg-faded.nav-fixed-top{
+	background:white;
+}
 
-body {
-	font-family: "segoe ui";
-}
-h1 {
-	text-align: center;
-	
-}
+@media (max-width:576px){
+	*{}	
+} 
