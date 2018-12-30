@@ -1,19 +1,199 @@
-*{margin: 0; padding: 0;} 
-a.nav-link {
-    font-family: seoge ui;
-    text-transform: uppercase;
-    font-size: 13px;
-    line-height: 79px;
-    color: #101010;
-}
-li.nav-item{
-	margin: 0 17px;
-	padding: 0;
-}
-nav.navbar.navbar-light.bg-faded.nav-fixed-top{
-	background:white;
+*{margin: 0; padding: 0;}
+
+.xuong:hover {
+    bottom: 4%;
 }
 
-@media (max-width:576px){
-	*{}	
+.xuong:after {content: "";position: absolute;width: 4px;height: 8px;background: white;left: 50%;bottom: 67%;margin-left: -2px;}
+
+.xuong {
+    width: 40px;
+    height: 77px;
+    border: white solid 1px;
+    position: absolute;
+    left: 50%;
+    border-radius: 30px;
+    bottom: 2%;
+    margin-left: -20px;
+    z-index: 2;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.khoittnho {
+    margin-bottom: 55px;
+}
+
+.khoittnho p {
+    font-size: 13px;
+    line-height: 21px;
+    color: #636363;
+}
+
+span.motaqt {
+    font-size: 14px;
+    margin-bottom: 26px;
+    display: block;
+}
+
+.khoittnho h3.tieudecap3 {
+    font-size: 16px;
+    color: #e35855;
+    margin-bottom: 20px;
+}
+
+span.dam {
+    font-weight: bold;
+    font-family: segoe ui;
+}
+
+h2.tieudecap2 {
+    font-weight: normal;
+    font-family: segoe ui light;
+    text-transform: uppercase;
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.tieudeto {
+    margin-top: 120px;
+    margin-bottom: 60px;
+}
+
+.tieudeto h1 {
+    display: inline;
+    background: url(images/ke.jpg) no-repeat left bottom;
+    padding-bottom: 4px;
+    text-transform: uppercase;
+    font-size: 30px;
+}
+
+a.nuthire.btn.btn-primary {
+    width: 180px;
+    background: black;
+    border: none;
+    border-radius: 0px;
+}
+
+.tt h2 {
+    font-size: 40px;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 22px;
+}
+
+.tt p {
+    color: #373a3c;
+    font-size: 16px;
+    line-height: 24px;
+    width: 46%;
+    margin: auto;
+    margin-bottom: 34px;
+}
+
+.tt img {
+    border-radius: 50%;
+    margin-bottom: 50px;
+}
+
+.tt {
+    z-index: 2;
+    position: relative;
+    padding-top: 24%;
+}
+
+a.navbar-brand {
+    padding: 0;
+    margin: 0;
+}
+
+.khoitt1 {
+    height: 100%;
+    width: 100%;
+    background: #4dd2ff;
+    position: relative;
+}
+
+.khoitt1:before {
+	content: "";
+	position: absolute;left: 0;top: 0;width: 50%;
+	height: 100%;background: #0086b3;z-index: 1;
+	}
+
+body,html {
+    width: 100%;
+    height: 100%;
+}
+
+nav.navbar.navbar-light.bg-faded.navbar-fixed-top {
+    background: white;
+    width: 104%;
+}
+
+a.nav-link {
+    font-family: segoe ui;
+    text-transform: uppercase;
+    font-size: 13px;
+    color: #101010;
+    line-height: 79px;
+}
+
+li.nav-item {
+    margin: 0;
+    padding: 0;
+    margin: 0 17px;
+}
+
+nav.navbar.navbar-light.bg-faded {
+    margin: 0;
+    padding: 0;
+    height: 100px;
 } 
+
+@media (max-width: 576px){
+    * {}
+
+h2.tieudecap2.text-sm-left.text-xs-center {
+    margin-top: 25px;
+}
+
+.tt img {
+    width: 203px;
+    margin-top: 108px;
+}
+
+li.nav-item {
+    float: none!important;
+    display: inline;
+}
+
+ul.nav.navbar-nav.float-xs-right {
+    text-align: center;
+    background: white;
+    margin: 0;
+    padding: 0;
+    width: 104%;
+    /* position: relative; */
+    /* left: -8px; */
+    padding: 10px 34px;
+    border-top: 1px solid #d8d8d8;
+}
+
+ul.nav.navbar-nav.float-xs-right {}
+
+li.nav-item {
+    display: inline!important;
+    margin: 0 0;
+}
+
+a.nav-link {
+    line-height: 27px;
+    display: inline!important;
+}
+
+a.navbar-brand {
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+}
