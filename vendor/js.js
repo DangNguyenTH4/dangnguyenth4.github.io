@@ -15,6 +15,9 @@
  	  	$('body,html').animate({scrollTop:$('#phanhoi').offset().top},700);
  	  	return false ; 
  	  
- 	 })
+	  })
 
-})  
+})
+$(document).on('click','div#callme',function(){
+	window.open("filePDF/CV_NguyenTheDang.pdf")
+});
