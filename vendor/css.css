@@ -182,6 +182,7 @@ nav.navbar.navbar-light.bg-faded {
     -moz-border-radius: 50% !important;
     -webkit-border-radius: 50% !important;
     border-radius: 50% !important;
+    /*background-image: url(images/find-cv.png);*/
     -moz-background-clip: padding;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
@@ -199,7 +200,7 @@ nav.navbar.navbar-light.bg-faded {
     height: 100%;
     top: 0;
     left: 0;
-    background-image: url(/images/find-cv.PNG);
+    background-image: url(images/find-cv.PNG);
     background-repeat: no-repeat;
     background-position: center center fixed;
     background-size: cover;
