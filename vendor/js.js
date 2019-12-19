@@ -19,5 +19,7 @@
 
 })
 $(document).on('click','div#callme',function(){
+	document.getElementById("au").pause();
 	window.open("filePDF/CV_NguyenTheDang.pdf")
 });
+
