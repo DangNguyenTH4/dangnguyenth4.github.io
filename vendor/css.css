@@ -1,5 +1,4 @@
 *{margin: 0; padding: 0;}
-
 .xuong:hover {
     bottom: 4%;
 }
@@ -116,7 +115,8 @@ a.navbar-brand {
 .khoitt1:before {
 	content: "";
 	position: absolute;left: 0;top: 0;width: 50%;
-	height: 100%;background: #0086b3;z-index: 1;
+    height: 100%;background: #0086b3;
+    /* z-index: 1; */
 	}
 
 body,html {
@@ -143,8 +143,13 @@ body,html {
     background-color: #555;
 }
 nav.navbar.navbar-light.bg-faded.navbar-fixed-top {
-    background: white;
+    background: #000;
+    /* background: #CC231E; */
+    /* background-image: url("./images/1960.jpg_wh300.jpg"); */
+    background-repeat: no-repeat;
+    background-size : 100% 100%;
     width: 104%;
+    color: #FFF;
 }
 
 a.nav-link {
@@ -192,6 +197,9 @@ nav.navbar.navbar-light.bg-faded {
     -webkit-animation: zcwmini2 1.5s 0s ease-out infinite;
     -moz-animation: zcwmini2 1.5s 0s ease-out infinite;
     animation: zcwmini2 1.5s 0s ease-out infinite;
+}
+#svgContainer{
+    color:#FFF;
 }
 #callme #callmeMain:before {
     content: "";

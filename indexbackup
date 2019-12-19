@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title> Nguyen The Dang - Developer </title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="vendor/bootstrap.js"></script>
+	<script type="text/javascript" src="vendor/js.js"></script>
+	<link rel="stylesheet" href="vendor/bootstrap.css">
+	<link rel="stylesheet" href="vendor/font-awesome.css">
+	<link rel="stylesheet" href="vendor/css.css">
+	<meta property="fb:app_id" content="293997917975910" />
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131505716-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-131505716-1');
+	</script>
+	<script
+		id="_wau5fr">var _wau = _wau || []; _wau.push(["dynamic", "1crn40p3du", "5fr", "c4302bffffff", "small"]);</script>
+	<script async src="//waust.at/d.js"></script>
+</head>
+
+<body>
+	<script>
+		window.fbAsyncInit = function () {
+			FB.init({
+				appId: '293997917975910',
+				xfbml: true,
+				version: 'v2.8'
+			});
+			FB.AppEvents.logPageView();
+		};
+	</script>
+
+	<div id="fb-root"></div>
+	<script>
+		(function (d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.2&appId=293997917975910';
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+		<div class="menutop">
+			<!-- <script id="_wau5fr">var _wau = _wau || []; _wau.push(["dynamic", "1crn40p3du", "5fr", "c4302bffffff", "small"]);</script><script async src="//waust.at/d.js"></script> -->
+			<nav class="navbar navbar-light bg-faded navbar-fixed-top">
+				<div class="container">
+					<a class="navbar-brand" href="#"> <img src="images/logo.PNG" alt="Logo vietnd"></a>
+					<ul class="nav navbar-nav float-xs-right">
+						<li class="nav-item active">
+							<a class="nav-link" href="">Giới thiệu <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link kn" href="#">Kinh nghiệm</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link sp" href="#">Sản phẩm</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="filePDF/CV_NguyenTheDang.pdf">Thông tin liên hệ</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link cm" href="#">Comment</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+
+		</div> <!-- het menu  -->
+
+		<div id="callme">
+			<div id="callmeMain"></div>
+		</div>
+		<div class="khoitt1">
+
+			<div class="container text-xs-center">
+
+				<div class="tt">
+					<img src="images/avartar.PNG" alt="">
+					<h2>Nguyễn Thế Đăng</h2>
+					<p>Quyết tâm - Kỷ luật - Lạc quan</p>
+					<a href="filePDF/CV_NguyenTheDang.pdf" class="nuthire btn btn-primary"> Liên hệ </a>
+				</div>
+
+				<div class="xuong"></div>
+			</div>
+		</div> <!-- HET PHAN KHOTT -->
+		<div class="edu" id="khoiedu">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 tieudeto text-xs-center">
+						<h1>Kinh nghiệm & Quá trình học</h1>
+					</div>
+					<div class="col-sm-4 cot1_3">
+						<h2 class="tieudecap2  text-sm-right text-xs-center"> Quá trình <span class="dam">học</span>
+						</h2>
+						<div class="khoittnho text-sm-right text-xs-center">
+							<h3 class="tieudecap3"> Tiểu học </h3>
+							<span class="motaqt"> 2000-2005 Tiểu học dân lập Nguyễn Trãi - Lạng Sơn </span>
+							<p>Xa quê từ nhỏ, theo bố đi làm ăn nơi xa!</p>
+						</div>
+						<div class="khoittnho text-sm-right text-xs-center">
+							<h3 class="tieudecap3"> Trung học</h3>
+							<span class="motaqt"> 2005-2009 Trung học cơ sở Hương Lâm </span>
+							<span class="motaqt"> 2010-2013 Trung học phổ thông Hiệp Hòa 2</span>
+							<p>Trở về quê hương, làm bạn với hương thơm của lúa!</p>
+						</div>
+						<div class="khoittnho text-sm-right text-xs-center">
+							<h3 class="tieudecap3">Đại học</h3>
+							<span class="motaqt"> 2013 - 2015 : Đại học Bách Khoa - Khoa công nghệ ô tô </span>
+							<span class="motaqt"> 2015 - Nay : Đại học Thủy Lợi - Công nghệ thông tin</span>
+
+						</div>
+
+					</div> <!-- het cot 4/1 -->
+					<div class="col-sm-4 cot2_3">
+						<img src="images/2.PNG" alt="" class="img-fluid">
+					</div>
+					<div class="col-sm-4 cot3_3">
+						<h2 class="tieudecap2  text-sm-left text-xs-center"> Quá trình <span class="dam">làm việc</span>
+						</h2>
+						<div class="khoittnho text-sm-left text-xs-center">
+							<h3 class="tieudecap3"> Kinh nghiệm bản thân</h3>
+							<p>Có kiến thức cơ bản về <b>C# .NET</b>, HTML, Css JS, JQuery, Android, C/C++, Arduino,
+								OpenGL,
+								TSQL, Git Bash</p>
+						</div>
+						<div class="khoittnho text-sm-left text-xs-center">
+							<h3 class="tieudecap3"> Front-end Developer</h3>
+							<span class="motaqt"> Công ty công nghệ và giải pháp phần mềm Lampard </span>
+							<p>Từ tháng 10/2017-01/2018 : Học tập, làm việc với các ngôn ngữ HTML,CSS,JS,JQuery tìm hiểu
+								thêm cake PHP</p>
+						</div>
+						<div class="khoittnho text-sm-left text-xs-center">
+							<h3 class="tieudecap3">Nghiên cứu sinh</h3>
+							<span class="motaqt"> Phòng nghiên cứu Netlab </span>
+							<p> Từ tháng 12/2017 - 7/2018 : Nghiên cứu tìm hiểu về Openstack - ảo hóa, ảo hóa chức năng
+								mạng
+								dựa trên điện toán đám mây</p>
+						</div>
+						<div class="khoittnho text-sm-left text-xs-center">
+							<h3 class="tieudecap3">Tự học tại nhà</h3>
+							<p>Làm các dự án về C#, .NET <br>https://www.github.com/DangNguyenTH4</p>
+						</div>
+					</div> <!-- het cot 4/1 -->
+				</div>
+			</div>
+		</div> <!-- end edu  -->
+
+
+		<div class="edu" id="khoisanpham">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 tieudeto text-xs-center">
+						<h1>Sản phẩm</h1>
+						<br>
+						<p>Các sản phẩm đã tham gia phát triển với C# <br>
+							Phần mềm học phát âm và ghi nhớ từ vựng tiếng anh qua hình ảnh.</br>
+							Phần mềm quản lý order đồ ăn trong quán coffe/nhà hàng.</br>
+							Quản lý theo dõi đăng nhập và sử dụng máy tính (Keyloger).
+						</p>
+						<span>Link projects </span><a
+							href="https://www.github.com/DangNguyenTH4">https://www.github.com/DangNguyenTH4</a>
+					</div>
+				</div>
+			</div>
+		</div> <!-- end edu  -->
+
+		<div class="edu" id="TinhCach">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 tieudeto text-xs-center">
+						<h1>Tính cách</h1>
+						<p>Bản thân là một người hiền hòa, biết lắng nghe, thích những ý tưởng, thích đọc truyện
+							ngôn tình, tiểu thuyết.<br>
+							Luôn cảm thấy tràn đầy năng lượng và lạc quan với cuộc sống.<br>
+							Thích đá bóng, nhưng ít khi xem bóng đá.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div> <!-- Tinh cach  -->
+
+
+		<div class="phanhoi" id="phanhoi">
+			<div class="container text-xs-center">
+				<div class="row">
+					<div class="col-sm-12">
+						<h2>Phản hồi </h2>
+
+					</div>
+					<div class="col-sm-8 push-sm-2">
+						<div class="fb-comments" data-href="https://dangnguyenth4.github.io" data-width="576"
+							data-numposts="5"></div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div >
+			<audio controls autoplay style="z-index: 99999">
+				<source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg"/>
+			</audio>
+		</div>
+	<script type="text/javascript">
+
+		// Snow from https://codepen.io/radum/pen/xICAB
+
+		(function () {
+
+			var COUNT = 3000;
+			var masthead = document.querySelector('body');
+			var canvas = document.createElement('canvas');
+			var ctx = canvas.getContext('2d');
+			// var width = masthead.clientWidth;
+			// var height = masthead.clientHeight;
+			var height =  self.innerHeight;
+			var width = self.innerWidth;
+			console.log(height+"--"+width);
+			var i = 0;
+			var active = false;
+			function setWidthHeight(){
+				// width = masthead.clientWidth;
+				// height = masthead.clientHeight;
+				
+				// width = document.body.scrollWidth;
+				// height = document.body.scrollHeight;
+
+				width = self.innerWidth;
+				height = self.innerHeight;
+			}
+			function onResize() {
+				setWidthHeight();
+				canvas.width = width;
+				canvas.height = height;
+				ctx.fillStyle = '#FFF';
+
+				var wasActive = active;
+				active = width > 600;
+
+				if (!wasActive && active)
+					requestAnimFrame(update);
+			}
+
+			var Snowflake = function () {
+				this.x = 0;
+				this.y = 0;
+				this.vy = 0;
+				this.vx = 0;
+				this.r = 0;
+
+				this.reset();
+			}
+
+			Snowflake.prototype.reset = function () {
+				this.x = Math.random() * width;
+				this.y = Math.random() * -height;
+				this.vy = 1 + Math.random() * 3;
+				this.vx = 0.5 - Math.random();
+				this.r = 1 + Math.random() * 2;
+				this.o = 0.5 + Math.random() * 0.5;
+			}
+
+			canvas.style.position = 'fixed';
+			canvas.style.left = canvas.style.top = '0';
+			// canvas.style.zIndex=9999;
+
+			var snowflakes = [], snowflake;
+			for (i = 0; i < COUNT; i++) {
+				snowflake = new Snowflake();
+				snowflake.reset();
+				snowflakes.push(snowflake);
+			}
+
+			function update() {
+
+				ctx.clearRect(0, 0, width, height);
+
+				if (!active)
+					return;
+
+				for (i = 0; i < COUNT; i++) {
+					snowflake = snowflakes[i];
+					snowflake.y += snowflake.vy;
+					snowflake.x += snowflake.vx;
+
+					ctx.globalAlpha = snowflake.o;
+					ctx.beginPath();
+					ctx.arc(snowflake.x, snowflake.y, snowflake.r, 0, Math.PI * 2, false);
+					ctx.closePath();
+					ctx.fill();
+
+					if (snowflake.y > height) {
+						snowflake.reset();
+					}
+				}
+
+				requestAnimFrame(update);
+			}
+
+			// shim layer with setTimeout fallback
+			window.requestAnimFrame = (function () {
+				return window.requestAnimationFrame ||
+					window.webkitRequestAnimationFrame ||
+					window.mozRequestAnimationFrame ||
+					function (callback) {
+						window.setTimeout(callback, 1000 / 60);
+					};
+			})();
+
+			onResize();
+			window.addEventListener('resize', onResize, false);
+
+			masthead.appendChild(canvas);
+		})();
+	</script>
+	<script type="text/javascript">
+
+		/******************************************
+		* Snow Effect Script- By Altan d.o.o. (http://www.altan.hr/snow/index.html)
+		* Visit Dynamic Drive DHTML code library (http://www.dynamicdrive.com/) for full source code
+		* Last updated Nov 9th, 05' by DD. This notice must stay intact for use
+		******************************************/
+
+		  //Configure below to change URL path to the snow image
+		  var snowsrc="snow.gif"
+		  // Configure below to change number of snow to render
+		  var no = 100;
+		  // Configure whether snow should disappear after x seconds (0=never):
+		  var hidesnowtime = 0;
+		  // Configure how much snow should drop down before fading ("windowheight" or "pageheight")
+		  var snowdistance = "pageheight";
+		
+		///////////Stop Config//////////////////////////////////
+		
+		  var ie4up = (document.all) ? 1 : 0;
+		  var ns6up = (document.getElementById&&!document.all) ? 1 : 0;
+		
+			function iecompattest(){
+			return (document.compatMode && document.compatMode!="BackCompat")? document.documentElement : document.body
+			}
+		
+		  var dx, xp, yp;    // coordinate and position variables
+		  var am, stx, sty;  // amplitude and step variables
+		  var i, doc_width = 800, doc_height = 600; 
+		  
+		  if (ns6up) {
+			doc_width = self.innerWidth;
+			doc_height = self.innerHeight;
+		  } else if (ie4up) {
+			doc_width = iecompattest().clientWidth;
+			doc_height = iecompattest().clientHeight;
+		  }
+		
+		  dx = new Array();
+		  xp = new Array();
+		  yp = new Array();
+		  am = new Array();
+		  stx = new Array();
+		  sty = new Array();
+		  snowsrc=(snowsrc.indexOf("dynamicdrive.com")!=-1)? "snow2.gif" : snowsrc
+		  for (i = 0; i < no; ++ i) {  
+			dx[i] = 0;                        // set coordinate variables
+			xp[i] = Math.random()*(doc_width-5);  // set position variables
+			yp[i] = Math.random()*doc_height;
+			am[i] = Math.random()*20;         // set amplitude variables
+			stx[i] = 0.02 + Math.random()/10; // set step variables
+			sty[i] = 0.7 + Math.random();     // set step variables
+				if (ie4up||ns6up) {
+			  if (i == 0) {
+				document.write("<div id=\"dot"+ i +"\" style=\"POSITION: absolute; Z-INDEX: "+ i +"; VISIBILITY: visible; TOP: 15px; LEFT: 15px;\"><a href=\"http://dynamicdrive.com\"><img src='"+snowsrc+"' border=\"0\"><\/a><\/div>");
+			  } else {
+				document.write("<div id=\"dot"+ i +"\" style=\"POSITION: absolute; Z-INDEX: "+ i +"; VISIBILITY: visible; TOP: 15px; LEFT: 15px;\"><img src='"+snowsrc+"' border=\"0\"><\/div>");
+			  }
+			}
+		  }
+		
+		  function snowIE_NS6() {  // IE and NS6 main animation function
+			doc_width = ns6up?window.innerWidth-10 : iecompattest().clientWidth-10;
+				doc_height=(window.innerHeight && snowdistance=="windowheight")? window.innerHeight : (ie4up && snowdistance=="windowheight")?  iecompattest().clientHeight : (ie4up && !window.opera && snowdistance=="pageheight")? iecompattest().scrollHeight : iecompattest().offsetHeight;
+			if (snowdistance=="windowheight"){
+				doc_height = window.innerHeight || iecompattest().clientHeight
+			}
+			else{
+				doc_height = iecompattest().scrollHeight
+			}
+			for (i = 0; i < no; ++ i) {  // iterate for every dot
+			  yp[i] += sty[i];
+			  if (yp[i] > doc_height-50) {
+				xp[i] = Math.random()*(doc_width-am[i]-30);
+				yp[i] = 0;
+				stx[i] = 0.02 + Math.random()/10;
+				sty[i] = 0.7 + Math.random();
+			  }
+			  dx[i] += stx[i];
+			  document.getElementById("dot"+i).style.top=yp[i]+"px";
+			  document.getElementById("dot"+i).style.left=xp[i] + am[i]*Math.sin(dx[i])+"px";  
+			}
+			snowtimer=setTimeout("snowIE_NS6()", 10);
+		  }
+		
+			function hidesnow(){
+				if (window.snowtimer) clearTimeout(snowtimer)
+				for (i=0; i<no; i++) document.getElementById("dot"+i).style.visibility="hidden"
+			}
+				
+		
+		if (ie4up||ns6up){
+			snowIE_NS6();
+				if (hidesnowtime>0)
+				setTimeout("hidesnow()", hidesnowtime*1000)
+				}
+		
+		</script>
+</body>
