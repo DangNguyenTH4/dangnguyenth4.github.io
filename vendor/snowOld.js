@@ -5,7 +5,7 @@
 		******************************************/
 
 		//Configure below to change URL path to the snow image
-		var snowsrc = "snow.gif"
+		var snowsrc = "vendor/images/snow.gif"
 		// Configure below to change number of snow to render
 		var no = 100;
 		// Configure whether snow should disappear after x seconds (0=never):
