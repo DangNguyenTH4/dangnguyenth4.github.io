@@ -62,7 +62,8 @@
 				<a class="navbar-brand" href="#">
 					<div class="santa"></div>
 				</a>
-				<a class="navbar-brand" href="#"> <canvas id="scene" width="100px" height="100px"style="background:black"></canvas></a>
+				<a class="navbar-brand" href="#"> <canvas id="scene" width="100px" height="100px"
+						style="background:black"></canvas></a>
 				<ul class="nav navbar-nav float-xs-right">
 					<li class="nav-item active">
 						<a class="nav-link" href="">Giới thiệu <span class="sr-only">(current)</span></a>
@@ -96,7 +97,7 @@
 				<img src="images/avartar.PNG" alt="">
 				<h2>Nguyễn Thế Đăng</h2>
 				<p>Quyết tâm - Kỷ luật - Lạc quan</p>
-				<a href="filePDF/CV_NguyenTheDang.pdf" class="up nuthire btn btn-primary"> Liên hệ </a>
+				<a href="#" id="stopMusic" class="up nuthire btn btn-primary" onclick="pause()"> Stop Music </a>
 			</div>
 
 			<div class="up xuong"></div>
@@ -214,6 +215,7 @@
 
 		</div>
 	</div>
+	<div class="santa2"></div>
 	<div>
 		<audio id="au">
 			<source src="vendor/mp3/We-Wish-You-A-Merry-Christmas-Enya.mp3" type="audio/mpeg" />
@@ -221,7 +223,7 @@
 	</div>
 	<script>
 		$(document).ready(function () {
-			
+
 			document.getElementById("au").volume = 0.5;
 			document.body.addEventListener("mousemove", playMusic);
 			function playMusic() {
@@ -239,19 +241,37 @@
 				// }
 			}
 		});
+		var isUserStop = false;
+		function pause() {
+			var au = document.getElementById("au");
+			var stop = document.getElementById("stopMusic");
+			if (!au.paused) {
+				au.pause();
+				stop.innerText="Play Music";
+			}
+			else {
+				// au.play();
+				play();
+				stop.innerText="Stop Music";
+			}
+			isUserStop = !isUserStop;
+		}
 		function play() {
 			var i = Math.floor(Math.random() * 100) + 1;
 			var au = document.getElementById("au");
-			if (au.paused) {
-				if (i % 2==0) {
-					console.log("Play crazy"+i);
+			var santa = document.getElementsByClassName("santa");
+			if (au.paused && !isUserStop) {
+				if (i % 2 == 0) {
+					console.log("Play crazy" + i);
 					au.src = "vendor/mp3/WeWishYouAMerryChristmas-CrazyFrog-783766.mp3";
 					au.play();
+					santa[0].style.animationDuration = "8s";
 				}
 				else {
-					console.log("Play Normal" +i);
+					console.log("Play Normal" + i);
 					au.src = "vendor/mp3/We-Wish-You-A-Merry-Christmas-Enya.mp3";
 					au.play();
+					santa[0].style.animationDuration = "40s";
 				}
 			}
 
