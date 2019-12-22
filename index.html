@@ -54,7 +54,7 @@
 	<div class="menutop">
 		<!-- <canvas id="scene" width="500px" height="500px" style="background:black"></canvas> -->
 		<!-- <script id="_wau5fr">var _wau = _wau || []; _wau.push(["dynamic", "1crn40p3du", "5fr", "c4302bffffff", "small"]);</script><script async src="//waust.at/d.js"></script> -->
-		<nav class="navbar navbar-light bg-faded navbar-fixed-top" id="svgContainer">
+		<nav class="navbar navbar-light bg-faded navbar-fixed-top">
 			<div class="container">
 				<!-- <a class="navbar-brand" href="#"> <img src="images/logo.PNG" alt="Logo vietnd"></a> -->
 				<!-- <a class="navbar-brand" href="#"> <canvas id="scene" width="100px" height="100px" -->
@@ -157,7 +157,7 @@
 					</div>
 					<div class="khoittnho text-sm-left text-xs-center">
 						<h3 class="tieudecap3">Tự học tại nhà</h3>
-						<p>Làm các dự án về C#, .NET <br>https://www.github.com/DangNguyenTH4</p>
+						<p class="up">Làm các dự án về C#, .NET <br>https://www.github.com/DangNguyenTH4</p>
 					</div>
 				</div> <!-- het cot 4/1 -->
 			</div>
@@ -168,7 +168,7 @@
 	<div class="edu" id="khoisanpham">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-12 tieudeto text-xs-center">
+				<div class="up col-sm-12 tieudeto text-xs-center">
 					<h1>Sản phẩm</h1>
 					<br>
 					<p>Các sản phẩm đã tham gia phát triển với C# <br>
@@ -176,7 +176,7 @@
 						Phần mềm quản lý order đồ ăn trong quán coffe/nhà hàng.</br>
 						Quản lý theo dõi đăng nhập và sử dụng máy tính (Keyloger).
 					</p>
-					<span>Link projects </span><a
+					<span class="up">Link projects </span><a
 						href="https://www.github.com/DangNguyenTH4">https://www.github.com/DangNguyenTH4</a>
 				</div>
 			</div>
@@ -199,10 +199,10 @@
 	</div> <!-- Tinh cach  -->
 
 
-	<div class="phanhoi" id="phanhoi">
+	<div class="up phanhoi" id="phanhoi">
 		<div class="container text-xs-center">
 			<div class="row">
-				<div class="col-sm-12">
+				<div class="up col-sm-12">
 					<h2>Phản hồi </h2>
 
 				</div>
@@ -216,7 +216,7 @@
 	</div>
 	<div>
 		<audio id="au">
-			<source src="We-Wish-You-A-Merry-Christmas-Enya.mp3" type="audio/mpeg" />
+			<source src="vendor/mp3/We-Wish-You-A-Merry-Christmas-Enya.mp3" type="audio/mpeg" />
 		</audio>
 	</div>
 	<script>
@@ -245,12 +245,12 @@
 			if (au.paused) {
 				if (i % 2==0) {
 					console.log("Play crazy"+i);
-					au.src = "WeWishYouAMerryChristmas-CrazyFrog-783766.mp3";
+					au.src = "vendor/mp3/WeWishYouAMerryChristmas-CrazyFrog-783766.mp3";
 					au.play();
 				}
 				else {
 					console.log("Play Normal" +i);
-					au.src = "We-Wish-You-A-Merry-Christmas-Enya.mp3";
+					au.src = "vendor/mp3/We-Wish-You-A-Merry-Christmas-Enya.mp3";
 					au.play();
 				}
 			}
