@@ -5,7 +5,7 @@
 
 .xuong:after {content: "";position: absolute;width: 4px;height: 8px;background: white;left: 50%;bottom: 67%;margin-left: -2px;}
 .santa {
-    background: url(http://myskins.org/images/santas.gif) no-repeat right;
+    background: url(images/santas.gif) no-repeat right;
     background-size: 150px;
     background-position-y: 30px;
     padding-top: 0px;
@@ -27,13 +27,45 @@
     
     }
     @-webkit-keyframes santa{
-        0% {left: -150px; top: -50px;}
-        100% {left: 100vw; top: -50px;}
+        0% {left: -150px; top: 0px;}
+        100% {left: 100vw; top: 0px;}
     }
     @keyframes santa{
-        0% {left: 0px; top: -30px;}
-        100% {left: 100vw; top: -30px;}
+        0% {left: -150px; top: 0px;}
+        100% {left: 100vw; top: 0px;}
     }
+    .santa2 {
+        transform: scaleX(-1);
+
+        background: url(images/santas.gif) no-repeat right;
+        background-size: 150px;
+        background-position-y: 30px;
+        padding-top: 0px;
+        text-align: right;
+    
+        width: 150px;
+        height: 110px;
+        position: fixed;
+        right : 0px;
+    
+    
+        -webkit-animation-name: santa2;
+        -webkit-animation-duration: 20s;
+        -webkit-animation-iteration-count: infinite;
+        animation-name: santa2;
+        animation-duration: 20s;
+        animation-iteration-count: infinite;
+    
+        
+        }
+        @-webkit-keyframes santa2{
+            0% {right: -150px; bottom: 0px;}
+            100% {right: 100vw; bottom: 0px;}
+        }
+        @keyframes santa2{
+            0% {right: -150px; bottom: 0px;}
+            100% {right: 100vw; bottom: 0px;}
+        }
 .row > .up{
     z-index: 1;
 }
@@ -390,13 +422,43 @@ a.navbar-brand {
     animation-iteration-count: infinite;
     }
     @-webkit-keyframes santa{
-        0% {left: -150px; top: -30px;}
+        0% {left: -150px; top: 0px;}
         100% {left: 100vw; top: 0px;}
     }
     @keyframes santa{
-        0% {left: 0px; top: -30px;}
-        100% {left: 100vw; top: -30px;}
+        0% {left: 0px; top: 0px;}
+        100% {left: 100vw; top: 0px;}
     }
+    .santa2 {
+        transform: scaleX(-1);
+
+        background: url(http://myskins.org/images/santas.gif) no-repeat right;
+        background-size: 150px;
+        background-position-y: 30px;
+        padding-top: 0px;
+        text-align: right;
+    
+        width: 150px;
+        height: 110px;
+        position: fixed;
+        left: 0px;
+    
+    
+        -webkit-animation-name: santa2;
+        -webkit-animation-duration: 10s;
+        -webkit-animation-iteration-count: infinite;
+        animation-name: santa2;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        }
+        @-webkit-keyframes santa2{
+            0% {left: -150px; top: 0px;}
+            100% {left: 100vw; top: 0px;}
+        }
+        @keyframes santa2{
+            0% {left: 0px; top: 0px;}
+            100% {left: 100vw; top: 0px;}
+        }
     
 }
 
