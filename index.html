@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="vendor/snowNew.js"></script>
 	<script type="text/javascript" src="vendor/snowDot.js"></script>
 	<script type="text/javascript" src="vendor/snowOld.js"></script>
+	<script type="text/javascript" src="vendor/atree.js"></script>
 	<link rel="stylesheet" href="vendor/bootstrap.css">
 	<link rel="stylesheet" href="vendor/font-awesome.css">
 	<link rel="stylesheet" href="vendor/css.css">
@@ -55,7 +56,13 @@
 		<!-- <script id="_wau5fr">var _wau = _wau || []; _wau.push(["dynamic", "1crn40p3du", "5fr", "c4302bffffff", "small"]);</script><script async src="//waust.at/d.js"></script> -->
 		<nav class="navbar navbar-light bg-faded navbar-fixed-top" id="svgContainer">
 			<div class="container">
-				<a class="navbar-brand" href="#"> <img src="images/logo.PNG" alt="Logo vietnd"></a>
+				<!-- <a class="navbar-brand" href="#"> <img src="images/logo.PNG" alt="Logo vietnd"></a> -->
+				<!-- <a class="navbar-brand" href="#"> <canvas id="scene" width="100px" height="100px" -->
+				<!-- style="background:black"></canvas></a> -->
+				<a class="navbar-brand" href="#">
+					<div class="santa"></div>
+				</a>
+				<a class="navbar-brand" href="#"> <canvas id="scene" width="100px" height="100px"style="background:black"></canvas></a>
 				<ul class="nav navbar-nav float-xs-right">
 					<li class="nav-item active">
 						<a class="nav-link" href="">Giới thiệu <span class="sr-only">(current)</span></a>
@@ -89,10 +96,10 @@
 				<img src="images/avartar.PNG" alt="">
 				<h2>Nguyễn Thế Đăng</h2>
 				<p>Quyết tâm - Kỷ luật - Lạc quan</p>
-				<a href="filePDF/CV_NguyenTheDang.pdf" class="nuthire btn btn-primary"> Liên hệ </a>
+				<a href="filePDF/CV_NguyenTheDang.pdf" class="up nuthire btn btn-primary"> Liên hệ </a>
 			</div>
 
-			<div class="xuong"></div>
+			<div class="up xuong"></div>
 		</div>
 	</div> <!-- HET PHAN KHOTT -->
 	<div class="edu" id="khoiedu">
@@ -214,7 +221,7 @@
 	</div>
 	<script>
 		$(document).ready(function () {
-			var i = 0;
+			
 			document.getElementById("au").volume = 0.5;
 			document.body.addEventListener("mousemove", playMusic);
 			function playMusic() {
@@ -223,27 +230,31 @@
 				// audio.src = "horse.mp3";
 
 				// audio.play();
-				console.log("Must console log???" + i);
+				// console.log("Must console log???" + i);
 
-				document.getElementById("au").play();
-				i++;
+				// document.getElementById("au").play();
+				play();
 				// if(i>1000){
 				// document.body.removeEventListener("mousemove", playMusic);
 				// }
 			}
 		});
-		function play(){
-			var i = Math.floor(Math.random() * 2 ) + 1;
-			if(i==1){
-				var au =document.getElementById("au");
-				au.src="WeWishYouAMerryChristmas-CrazyFrog-783766.mp3";
-				au.play();
+		function play() {
+			var i = Math.floor(Math.random() * 100) + 1;
+			var au = document.getElementById("au");
+			if (au.paused) {
+				if (i % 2==0) {
+					console.log("Play crazy"+i);
+					au.src = "WeWishYouAMerryChristmas-CrazyFrog-783766.mp3";
+					au.play();
+				}
+				else {
+					console.log("Play Normal" +i);
+					au.src = "We-Wish-You-A-Merry-Christmas-Enya.mp3";
+					au.play();
+				}
 			}
-			else{
-				var au =document.getElementById("au");
-				au.src="We-Wish-You-A-Merry-Christmas-Enya.mp3";
-				au.play();
-			}
+
 		}
 
 	</script>
