@@ -1,5 +1,5 @@
 // Snow from https://codepen.io/radum/pen/xICAB
-function dotSnow (tag) {
+function dotSnow(tag) {
 
     var COUNT = 3000;
     var masthead = document.querySelector(tag);
@@ -21,6 +21,10 @@ function dotSnow (tag) {
 
         width = self.innerWidth;
         height = self.innerHeight;
+        if(tag==="nav"){
+            height=100;
+        }
+        
     }
     function onResize() {
         setWidthHeight();
@@ -106,7 +110,7 @@ function dotSnow (tag) {
 
     masthead.appendChild(canvas);
 };
-$(document).ready(function(){
+$(document).ready(function () {
     dotSnow("body");
-dotSnow("nav");
+    dotSnow("nav");
 });
