@@ -1,11 +1,74 @@
 *{margin: 0; padding: 0;}
-
 .xuong:hover {
     bottom: 4%;
 }
 
 .xuong:after {content: "";position: absolute;width: 4px;height: 8px;background: white;left: 50%;bottom: 67%;margin-left: -2px;}
+.santa {
+    background: url(images/santas.gif) no-repeat right;
+    background-size: 150px;
+    background-position-y: 30px;
+    padding-top: 0px;
+    text-align: right;
 
+    width: 150px;
+    height: 110px;
+    position: fixed;
+    left: 0px;
+
+
+    -webkit-animation-name: santa;
+    -webkit-animation-duration: 20s;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: santa;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+
+    
+    }
+    @-webkit-keyframes santa{
+        0% {left: -150px; top: 0px;}
+        100% {left: 100vw; top: 0px;}
+    }
+    @keyframes santa{
+        0% {left: -150px; top: 0px;}
+        100% {left: 100vw; top: 0px;}
+    }
+    .santa2 {
+        transform: scaleX(-1);
+
+        background: url(images/santas.gif) no-repeat right;
+        background-size: 150px;
+        background-position-y: 30px;
+        padding-top: 0px;
+        text-align: right;
+    
+        width: 150px;
+        height: 110px;
+        position: fixed;
+        right : 0px;
+    
+    
+        -webkit-animation-name: santa2;
+        -webkit-animation-duration: 20s;
+        -webkit-animation-iteration-count: infinite;
+        animation-name: santa2;
+        animation-duration: 20s;
+        animation-iteration-count: infinite;
+    
+        
+        }
+        @-webkit-keyframes santa2{
+            0% {right: -150px; bottom: 0px;}
+            100% {right: 100vw; bottom: 0px;}
+        }
+        @keyframes santa2{
+            0% {right: -150px; bottom: 0px;}
+            100% {right: 100vw; bottom: 0px;}
+        }
+.row > .up{
+    z-index: 1;
+}
 .xuong {
     width: 40px;
     height: 77px;
@@ -19,7 +82,9 @@
     cursor: pointer;
     transition: 0.4s;
 }
-
+.up{
+    z-index: 99999;
+}
 .khoittnho {
     margin-bottom: 55px;
 }
@@ -116,7 +181,8 @@ a.navbar-brand {
 .khoitt1:before {
 	content: "";
 	position: absolute;left: 0;top: 0;width: 50%;
-	height: 100%;background: #0086b3;z-index: 1;
+    height: 100%;background: #0086b3;
+    /* z-index: 1; */
 	}
 
 body,html {
@@ -143,8 +209,14 @@ body,html {
     background-color: #555;
 }
 nav.navbar.navbar-light.bg-faded.navbar-fixed-top {
-    background: white;
+    background: #000;
+    /* background: #CC231E; */
+    /* background-image: url("./images/1960.jpg_wh300.jpg"); */
+    background-repeat: no-repeat;
+    background-size : 100% 100%;
     width: 104%;
+    color: #FFF;
+    
 }
 
 a.nav-link {
@@ -192,6 +264,9 @@ nav.navbar.navbar-light.bg-faded {
     -webkit-animation: zcwmini2 1.5s 0s ease-out infinite;
     -moz-animation: zcwmini2 1.5s 0s ease-out infinite;
     animation: zcwmini2 1.5s 0s ease-out infinite;
+}
+#svgContainer{
+    color:#FFF;
 }
 #callme #callmeMain:before {
     content: "";
@@ -326,4 +401,64 @@ a.navbar-brand {
     text-align: center;
     width: 100%;
 }
+.santa {
+    background: url(http://myskins.org/images/santas.gif) no-repeat right;
+    background-size: 150px;
+    background-position-y: 30px;
+    padding-top: 0px;
+    text-align: right;
+
+    width: 150px;
+    height: 110px;
+    position: fixed;
+    left: 0px;
+
+
+    -webkit-animation-name: santa;
+    -webkit-animation-duration: 10s;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: santa;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    }
+    @-webkit-keyframes santa{
+        0% {left: -150px; top: 0px;}
+        100% {left: 100vw; top: 0px;}
+    }
+    @keyframes santa{
+        0% {left: 0px; top: 0px;}
+        100% {left: 100vw; top: 0px;}
+    }
+    .santa2 {
+        transform: scaleX(-1);
+
+        background: url(http://myskins.org/images/santas.gif) no-repeat right;
+        background-size: 150px;
+        background-position-y: 30px;
+        padding-top: 0px;
+        text-align: right;
+    
+        width: 150px;
+        height: 110px;
+        position: fixed;
+        left: 0px;
+    
+    
+        -webkit-animation-name: santa2;
+        -webkit-animation-duration: 10s;
+        -webkit-animation-iteration-count: infinite;
+        animation-name: santa2;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        }
+        @-webkit-keyframes santa2{
+            0% {left: -150px; top: 0px;}
+            100% {left: 100vw; top: 0px;}
+        }
+        @keyframes santa2{
+            0% {left: 0px; top: 0px;}
+            100% {left: 100vw; top: 0px;}
+        }
+    
 }
+
