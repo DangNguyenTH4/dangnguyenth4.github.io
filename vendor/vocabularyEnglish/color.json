@@ -1,0 +1,22 @@
+{ "lst":[
+{"eng":"red","type":"(n)","vn":"màu đỏ","example":"She uses a lot of reds and pinks in her paintings."},
+{"eng":"cream","type":"(n)","vn":"màu kem","example":"She is very fond of cream."},
+{"eng":"purple","type":"(n)","vn":"màu tím","example":"The evening sky was full of purples and reds."},
+{"eng":"black","type":"(n)","vn":"màu đen","example":"All the mourners were wearing black."},
+{"eng":"gray","type":"(n)","vn":"màu xám","example":"She was dressed in grey."},
+{"eng":"silver","type":"(n)","vn":"màu bạc","example":"There were glints of silver in his thick dark hair."},
+{"eng":"gold","type":"(n)","vn":"màu vàng kim","example":"The boat was painted in black and gold."},
+{"eng":"copper","type":"(n)","vn":"màu đồng","example":"The copper of Rosie's hair shone in the sunlight."},
+{"eng":"green","type":"(n)","vn":"màu xanh lá cây","example":"She was dressed all in green."},
+{"eng":"pink","type":"(n)","vn":"màu hồng","example":"She's very fond of pink."},
+{"eng":"yellow","type":"(n)","vn":"màu vàng","example":"You should wear more yellow - it suits you."},
+{"eng":"brown","type":"(n)","vn":"màu nâu","example":"The skirt is also available in brown."},
+{"eng":"blue","type":"(n)","vn":"màu xanh da trời","example":"The boy was dressed all in blue."},
+{"eng":"chestnut","type":"(n)","vn":"màu hạt dẻ","example":"She had thick chestnut hair."},
+{"eng":"turquoise","type":"(n)","vn":"màu lam","example":"I don't like turquoise."},
+{"eng":"lime green","type":"(n)","vn":"màu xanh đọt chuối","example":"My sister hates lime green so much."},
+{"eng":"navy blue","type":"(n)","vn":"màu xanh nước biển","example":"He was wearing a navy blue sweater."},
+{"eng":"bright red","type":"(n)","vn":"màu đỏ tươi","example":"She has a bright red shoes."},
+{"eng":"vivid","type":"(adj)","vn":"chói, chói lọi, sặc sỡ (màu sắc, ánh sáng)","example":"She was wearing a vivid pink shirt."},
+{"eng":"white","type":"(n)","vn":"màu trắng","example":"The day before all fade to black and white."}
+]}
