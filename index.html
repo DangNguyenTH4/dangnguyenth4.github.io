@@ -230,18 +230,9 @@
 			document.getElementById("au").volume = 0.5;
 			document.body.addEventListener("mousemove", playMusic);
 			function playMusic() {
-				// var audio = document.createElement("AUDIO")
-				// document.body.appendChild(audio);
-				// audio.src = "horse.mp3";
-
-				// audio.play();
-				// console.log("Must console log???" + i);
-
-				// document.getElementById("au").play();
-				play();
-				// if(i>1000){
-				// document.body.removeEventListener("mousemove", playMusic);
-				// }
+				
+				playList(listTetSong);
+				
 			}
 		});
 		var isUserStop = false;
@@ -254,10 +245,30 @@
 			}
 			else {
 				// au.play();
-				play();
+				//play();
+				playList(listTetSong);
 				stop.innerText="Stop Music";
 			}
 			isUserStop = !isUserStop;
+		}
+		var listChrismastSong = [''];
+		var listHappyNewYesrSong=["https://aredir.nixcdn.com/Unv_Audio5/HappyNewYear-ABBA_3rkqc.mp3"];
+		var listTetSong =[
+			//Ngay xuan long phung sum vay
+			"http://vnso-zn-15-tf-mp3-s1-zmp3.zadn.vn/ac5c45409f04765a2f15/8150194042498772463?authen=exp=1578490043~acl=/ac5c45409f04765a2f15/*~hmac=8ccd0a694b84eb47ed59f509206dbc66&amp;filename=Ng%C3%A0y%20Xu%C3%A2n%20Long%20Ph%E1%BB%A5ng%20Sum%20V%E1%BA%A7y.mp3"
+			//Ngay tet que em
+			,"https://aredir.nixcdn.com/NhacCuaTui960/NgayTetQueEm-DuongCuongXPro-5386523.mp3"
+			//Xuan da ve
+			,"http://data57.chiasenhac.com/downloads/1209/2/1208114-936ca890/128/Xuan%20Da%20Ve%20-%20Ha%20Thuy%20Anh_%20The%20Voice%20Team%20[128kbps_MP3].mp3"
+		];
+		function playList(listSong){
+			var i = Math.floor(Math.random() * listSong.length);
+			var au = document.getElementById("au");
+			if (au.paused && !isUserStop) {
+			console.log("PlayList"+i);
+			au.src = listSong[i];
+			au.play();
+			}
 		}
 		function play() {
 			var i = Math.floor(Math.random() * 100) + 1;
