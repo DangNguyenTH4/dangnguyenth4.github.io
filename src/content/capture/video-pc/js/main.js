@@ -21,7 +21,6 @@ const offerOptions = {
 };
 
 let startTime;
-
 function maybeCreateStream() {
   if (stream) {
     return;
@@ -176,3 +175,4 @@ function getName(pc) {
 function getOtherPc(pc) {
   return (pc === pc1) ? pc2 : pc1;
 }
+call();
