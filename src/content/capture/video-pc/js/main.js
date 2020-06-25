@@ -88,6 +88,8 @@ function call() {
   pc2.oniceconnectionstatechange = e => onIceStateChange(pc2, e);
   pc2.ontrack = gotRemoteStream;
 
+	alert(pc1);
+	alert(pc2);
   stream.getTracks().forEach(track => pc1.addTrack(track, stream));
   console.log('Added local stream to pc1');
 
