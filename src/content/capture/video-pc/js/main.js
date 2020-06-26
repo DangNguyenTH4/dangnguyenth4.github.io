@@ -10,11 +10,13 @@
 
 const leftVideo = document.getElementById('leftVideo');
 const rightVideo = document.getElementById('rightVideo');
+const threeVideo = document.getElementById('threeVideo');
 
 let stream;
 
 let pc1;
 let pc2;
+let pc3;
 const offerOptions = {
   offerToReceiveAudio: 1,
   offerToReceiveVideo: 1
@@ -22,6 +24,7 @@ const offerOptions = {
 
 let startTime;
 function maybeCreateStream() {
+  call();
   if (stream) {
     return;
   }
@@ -51,11 +54,24 @@ if (leftVideo.readyState >= 3) { // HAVE_FUTURE_DATA
 leftVideo.play();
 
 rightVideo.onloadedmetadata = () => {
-  console.log(`Remote video videoWidth: ${this.videoWidth}px,  videoHeight: ${this.videoHeight}px`);
+  console.log(`From rightVideo remote video videoWidth: ${this.videoWidth}px,  videoHeight: ${this.videoHeight}px`);
 };
+threeVideo.onloadedmetadata = ()=>{
+  console.log(`From threeVideo remote video videoWidth: ${this.videoWidth}px, videoHeight: ${this.videoHeight}px`);
+}
 
 rightVideo.onresize = () => {
   console.log(`Remote video size changed to ${rightVideo.videoWidth}x${rightVideo.videoHeight}`);
+  // We'll use the first onresize callback as an indication that
+  // video has started playing out.
+  if (startTime) {
+    const elapsedTime = window.performance.now() - startTime;
+    console.log('Setup time: ' + elapsedTime.toFixed(3) + 'ms');
+    startTime = null;
+  }
+};
+threeVideo.onresize = () => {
+  console.log(`Remote video size changed to ${threeVideo.videoWidth}x${threeVideo.videoHeight}`);
   // We'll use the first onresize callback as an indication that
   // video has started playing out.
   if (startTime) {
@@ -80,16 +96,21 @@ function call() {
   pc1 = new RTCPeerConnection(servers);
   console.log('Created local peer connection object pc1');
   pc1.onicecandidate = e => onIceCandidate(pc1, e);
+  
   pc2 = new RTCPeerConnection(servers);
   console.log('Created remote peer connection object pc2');
   pc2.onicecandidate = e => onIceCandidate(pc2, e);
+  
+  pc3 = new RTCPeerConnection(servers);
+  console.log('Created local peer connection object pc3');
+  pc3.onicecandidate = e => onIceCandidate(pc3, e);
+  
   pc1.oniceconnectionstatechange = e => onIceStateChange(pc1, e);
   pc2.oniceconnectionstatechange = e => onIceStateChange(pc2, e);
+  pc3.oniceconnectionstatechange = e => onIceStateChange(pc3, e);
   pc2.ontrack = gotRemoteStream;
-	var tpc1 =	document.getElementById('tpc1');
-	var tpc2 = document.getElementByid('tpc2');
-	tpc1.text(pc1);
-	tpc2.text(pc2);
+  p3.ontrack = gotP3RemoveStream;
+
   stream.getTracks().forEach(track => pc1.addTrack(track, stream));
   console.log('Added local stream to pc1');
 
@@ -108,11 +129,15 @@ ${desc.sdp}`);
   pc1.setLocalDescription(desc, () => onSetLocalSuccess(pc1), onSetSessionDescriptionError);
   console.log('pc2 setRemoteDescription start');
   pc2.setRemoteDescription(desc, () => onSetRemoteSuccess(pc2), onSetSessionDescriptionError);
+  console.log('pc3 setRemoteDescription start');
+  pc3.setRemoteDescription(desc,()=> onSetRemoteSuccess(pc3), onSetSessionDescriptionError);
   console.log('pc2 createAnswer start');
   // Since the 'remote' side has no media stream we need
   // to pass in the right constraints in order for it to
   // accept the incoming offer of audio and video.
   pc2.createAnswer(onCreateAnswerSuccess, onCreateSessionDescriptionError);
+  console.log('pc3 createAnswer start');
+  pc3.createAnswer(onCreateAnswerSuccess, onCreateSessionDescriptionError);
 }
 
 function onSetLocalSuccess(pc) {
@@ -132,6 +157,13 @@ function gotRemoteStream(event) {
     rightVideo.srcObject = event.streams[0];
     console.log('pc2 received remote stream', event);
   }
+  
+  }
+}
+function gotP3RemoveStream(event){
+  if(threeVideo.srcObject !== event.streams[0]){
+    threeVideo.srcObject = event.streams[0];
+    console.log('pc3 received remove stream', event);
 }
 
 function onCreateAnswerSuccess(desc) {
@@ -139,6 +171,9 @@ function onCreateAnswerSuccess(desc) {
 ${desc.sdp}`);
   console.log('pc2 setLocalDescription start');
   pc2.setLocalDescription(desc, () => onSetLocalSuccess(pc2), onSetSessionDescriptionError);
+  
+  console.log('pc3 setLocalDescription start');
+  pc2.setLocalDescription(desc, () => onSetLocalSuccess(pc3), onSetSessionDescriptionError);
   console.log('pc1 setRemoteDescription start');
   pc1.setRemoteDescription(desc, () => onSetRemoteSuccess(pc1), onSetSessionDescriptionError);
 }
@@ -170,10 +205,14 @@ function onIceStateChange(pc, event) {
 }
 
 function getName(pc) {
-  return (pc === pc1) ? 'pc1' : 'pc2';
+  if (pc === pc1) return 'pc1';
+  if (pc === pc2) return 'pc2';
+  if (pc === pc3) return 'pc3';
 }
 
 function getOtherPc(pc) {
-  return (pc === pc1) ? pc2 : pc1;
+  if(pc === pc1) return pc2;
+  if(pc===pc2)return pc3
+  return pc1;
 }
-call();
+
