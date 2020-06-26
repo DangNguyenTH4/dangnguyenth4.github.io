@@ -157,8 +157,6 @@ function gotRemoteStream(event) {
     rightVideo.srcObject = event.streams[0];
     console.log('pc2 received remote stream', event);
   }
-  
-  }
 }
 function gotP3RemoveStream(event){
   if(threeVideo.srcObject !== event.streams[0]){
