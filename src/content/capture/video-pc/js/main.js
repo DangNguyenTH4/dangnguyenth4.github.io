@@ -163,6 +163,7 @@ function gotP3RemoveStream(event){
     threeVideo.srcObject = event.streams[0];
     console.log('pc3 received remove stream', event);
 }
+}
 
 function onCreateAnswerSuccess(desc) {
   console.log(`Answer from pc2:
