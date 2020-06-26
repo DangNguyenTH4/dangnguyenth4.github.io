@@ -24,7 +24,7 @@ const offerOptions = {
 
 let startTime;
 function maybeCreateStream() {
-  call();
+  
   if (stream) {
     return;
   }
