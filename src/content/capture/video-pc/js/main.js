@@ -109,7 +109,7 @@ function call() {
   pc2.oniceconnectionstatechange = e => onIceStateChange(pc2, e);
   pc3.oniceconnectionstatechange = e => onIceStateChange(pc3, e);
   pc2.ontrack = gotRemoteStream;
-  p3.ontrack = gotP3RemoveStream;
+  pc3.ontrack = gotP3RemoveStream;
 
   stream.getTracks().forEach(track => pc1.addTrack(track, stream));
   console.log('Added local stream to pc1');
