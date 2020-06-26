@@ -170,13 +170,15 @@ function onCreateAnswerSuccess(desc) {
 ${desc.sdp}`);
   console.log('pc2 setLocalDescription start');
   pc2.setLocalDescription(desc, () => onSetLocalSuccess(pc2), onSetSessionDescriptionError);
-  
-  console.log('pc3 setLocalDescription start');
-  pc2.setLocalDescription(desc, () => onSetLocalSuccess(pc3), onSetSessionDescriptionError);
   console.log('pc1 setRemoteDescription start');
   pc1.setRemoteDescription(desc, () => onSetRemoteSuccess(pc1), onSetSessionDescriptionError);
 }
-
+function onCreateAnswerSuccesFromPC3(desc){
+console.log(`Answer from pc2: ${desc.sdp}`);
+	console.log('pc3 setLocalDescription start');
+  pc3.setLocalDescription(desc, () => onSetLocalSuccess(pc3), onSetSessionDescriptionError);
+  pc1.setRemoteDescription(desc, () => onSetRemoteSuccess(pic1), onSetSessionDescriptionError);
+}
 function onIceCandidate(pc, event) {
   getOtherPc(pc).addIceCandidate(event.candidate)
       .then(
