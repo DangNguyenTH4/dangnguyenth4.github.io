@@ -1,298 +1,201 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<!--
+ *  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
+ *
+ *  Use of this source code is governed by a BSD-style license
+ *  that can be found in the LICENSE file in the root of the source
+ *  tree.
+-->
+<html>
 <head>
-	<title> Nguyen The Dang - Developer </title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script type="text/javascript" src="vendor/bootstrap.js"></script>
-	<script type="text/javascript" src="vendor/js.js"></script>
-	<script type="text/javascript" src="vendor/snowNew.js"></script>
-	<script type="text/javascript" src="vendor/snowDot.js"></script>
-	<script type="text/javascript" src="vendor/snowOld.js"></script>
-	<script type="text/javascript" src="vendor/atree.js"></script>
-	<link rel="stylesheet" href="vendor/bootstrap.css">
-	<link rel="stylesheet" href="vendor/font-awesome.css">
-	<link rel="stylesheet" href="vendor/css.css">
-	<meta property="fb:app_id" content="293997917975910" />
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131505716-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments); }
-		gtag('js', new Date());
 
-		gtag('config', 'UA-131505716-1');
-	</script>
-	<script
-		id="_wau5fr">var _wau = _wau || []; _wau.push(["dynamic", "1crn40p3du", "5fr", "c4302bffffff", "small"]);</script>
-	<script async src="//waust.at/d.js"></script>
+    <meta charset="utf-8">
+    <meta name="description" content="WebRTC Javascript code samples">
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+    <meta itemprop="description" content="Client-side WebRTC code samples">
+    <meta itemprop="image" content="src/images/webrtc-icon-192x192.png">
+    <meta itemprop="name" content="WebRTC code samples">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta id="theme-color" name="theme-color" content="#ffffff">
+
+    <base target="_blank">
+
+    <title>WebRTC samples</title>
+
+    <link rel="icon" sizes="192x192" href="src/images/webrtc-icon-192x192.png">
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="src/css/main.css"/>
+
+    <style>
+        h2 {
+            font-size: 1.5em;
+            font-weight: 500;
+        }
+
+        h3 {
+            border-top: none;
+        }
+
+        section {
+            border-bottom: 1px solid #eee;
+            margin: 0 0 1.5em 0;
+            padding: 0 0 1.5em 0;
+        }
+
+        section:last-child {
+            border-bottom: none;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 
 <body>
-	<script>
-		window.fbAsyncInit = function () {
-			FB.init({
-				appId: '293997917975910',
-				xfbml: true,
-				version: 'v2.8'
-			});
-			FB.AppEvents.logPageView();
-		};
-	</script>
+<div id="container">
 
-	<div id="fb-root"></div>
-	<script>
-		(function (d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.2&appId=293997917975910';
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-	</script>
-	<div class="menutop">
-		<!-- <canvas id="scene" width="500px" height="500px" style="background:black"></canvas> -->
-		<!-- <script id="_wau5fr">var _wau = _wau || []; _wau.push(["dynamic", "1crn40p3du", "5fr", "c4302bffffff", "small"]);</script><script async src="//waust.at/d.js"></script> -->
-		<nav class="navbar navbar-light bg-faded navbar-fixed-top">
-			<div class="container">
-				<!-- <a class="navbar-brand" href="#"> <img src="images/logo.PNG" alt="Logo vietnd"></a> -->
-				<!-- <a class="navbar-brand" href="#"> <canvas id="scene" width="100px" height="100px" -->
-				<!-- style="background:black"></canvas></a> -->
-				<a class="navbar-brand" href="#">
-					<div class="santa"></div>
-				</a>
-				<a class="navbar-brand" href="#"> <canvas id="scene" width="100px" height="100px"
-						style="background:black"></canvas></a>
-				<ul class="nav navbar-nav float-xs-right">
-					<li class="nav-item active">
-						<a class="nav-link" href="">Giới thiệu <span class="sr-only">(current)</span></a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link kn" href="#">Kinh nghiệm</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link sp" href="#">Sản phẩm</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="filePDF/CV_NguyenTheDang.pdf">Thông tin liên hệ</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link cm" href="#">Comment</a>
-					</li>
-				</ul>
-			</div>
-		</nav>
+    <h1>WebRTC samples</h1>
 
-	</div> <!-- het menu  -->
+    <section>
 
-	<div id="callme">
-		<div id="callmeMain"></div>
-	</div>
-	<div class="khoitt1">
+        <p>
+            This is a collection of small samples demonstrating various parts of the <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API">WebRTC APIs</a>. The code for all
+            samples are available in the <a href="https://github.com/webrtc/samples">GitHub repository</a>.
+        </p>
 
-		<div class="container text-xs-center">
+        <p>Most of the samples use <a href="https://github.com/webrtc/adapter">adapter.js</a>, a shim to insulate apps
+            from spec changes and prefix differences.</p>
 
-			<div class="tt">
-				<img src="images/avartar.PNG" alt="">
-				<h2>Nguyễn Thế Đăng</h2>
-				<p>Quyết tâm - Kỷ luật - Lạc quan</p>
-				<a href="#" id="stopMusic" class="up nuthire btn btn-primary" onclick="pause()"> Stop Music </a>
-			</div>
+        <p><a href="http://www.webrtc.org/testing" title="Command-line flags for WebRTC testing">https://webrtc.org/testing</a>
+            lists command line flags useful for development and testing with Chrome.</p>
 
-			<div class="up xuong"></div>
-		</div>
-	</div> <!-- HET PHAN KHOTT -->
-	<div class="edu" id="khoiedu">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 tieudeto text-xs-center">
-					<h1>Kinh nghiệm & Quá trình học</h1>
-				</div>
-				<div class="col-sm-4 cot1_3">
-					<h2 class="tieudecap2  text-sm-right text-xs-center"> Quá trình <span class="dam">học</span>
-					</h2>
-					<div class="khoittnho text-sm-right text-xs-center">
-						<h3 class="tieudecap3"> Tiểu học </h3>
-						<span class="motaqt"> 2000-2005 Tiểu học dân lập Nguyễn Trãi - Lạng Sơn </span>
-						<p>Xa quê từ nhỏ, theo bố đi làm ăn nơi xa!</p>
-					</div>
-					<div class="khoittnho text-sm-right text-xs-center">
-						<h3 class="tieudecap3"> Trung học</h3>
-						<span class="motaqt"> 2005-2009 Trung học cơ sở Hương Lâm </span>
-						<span class="motaqt"> 2010-2013 Trung học phổ thông Hiệp Hòa 2</span>
-						<p>Trở về quê hương, làm bạn với hương thơm của lúa!</p>
-					</div>
-					<div class="khoittnho text-sm-right text-xs-center">
-						<h3 class="tieudecap3">Đại học</h3>
-						<span class="motaqt"> 2013 - 2015 : Đại học Bách Khoa - Khoa công nghệ ô tô </span>
-						<span class="motaqt"> 2015 - Nay : Đại học Thủy Lợi - Công nghệ thông tin</span>
+        <p>Patches and issues welcome! See <a href="https://github.com/webrtc/samples/blob/gh-pages/CONTRIBUTING.md">CONTRIBUTING.md</a>
+            for instructions.</p>
 
-					</div>
+        <p class="warning"><strong>Warning:</strong> It is highly recommended to use headphones when testing these
+            samples, as it will otherwise risk loud audio feedback on your system.</p>
+    </section>
 
-				</div> <!-- het cot 4/1 -->
-				<div class="col-sm-4 cot2_3">
-					<img src="images/2.PNG" alt="" class="img-fluid">
-				</div>
-				<div class="col-sm-4 cot3_3">
-					<h2 class="tieudecap2  text-sm-left text-xs-center"> Quá trình <span class="dam">làm việc</span>
-					</h2>
-					<div class="khoittnho text-sm-left text-xs-center">
-						<h3 class="tieudecap3"> Kinh nghiệm bản thân</h3>
-						<p>Có kiến thức cơ bản về <b>C# .NET</b>, HTML, Css JS, JQuery, Android, C/C++, Arduino,
-							OpenGL,
-							TSQL, Git Bash</p>
-					</div>
-					<div class="khoittnho text-sm-left text-xs-center">
-						<h3 class="tieudecap3"> Front-end Developer</h3>
-						<span class="motaqt"> Công ty công nghệ và giải pháp phần mềm Lampard </span>
-						<p>Từ tháng 10/2017-01/2018 : Học tập, làm việc với các ngôn ngữ HTML,CSS,JS,JQuery tìm hiểu
-							thêm cake PHP</p>
-					</div>
-					<div class="khoittnho text-sm-left text-xs-center">
-						<h3 class="tieudecap3">Nghiên cứu sinh</h3>
-						<span class="motaqt"> Phòng nghiên cứu Netlab </span>
-						<p> Từ tháng 12/2017 - 7/2018 : Nghiên cứu tìm hiểu về Openstack - ảo hóa, ảo hóa chức năng
-							mạng
-							dựa trên điện toán đám mây</p>
-					</div>
-					<div class="khoittnho text-sm-left text-xs-center">
-						<h3 class="tieudecap3">Tự học tại nhà</h3>
-						<p class="up">Làm các dự án về C#, .NET <br>https://www.github.com/DangNguyenTH4</p>
-					</div>
-				</div> <!-- het cot 4/1 -->
-			</div>
-		</div>
-	</div> <!-- end edu  -->
+    <section>
 
+        <h2 id="getusermedia"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getUserMedia">getUserMedia():</a>
+        </h2>
+        <p class="description">Access media devices</p>
+        <ul>
+            <li><a href="src/content/getusermedia/gum/">Basic getUserMedia demo</a></li>
 
-	<div class="edu" id="khoisanpham">
-		<div class="container">
-			<div class="row">
-				<div class="up col-sm-12 tieudeto text-xs-center">
-					<h1>Sản phẩm</h1>
-					<br>
-					<p>Các sản phẩm đã tham gia phát triển với C# <br>
-						Phần mềm học phát âm và ghi nhớ từ vựng tiếng anh qua hình ảnh.</br>
-						Phần mềm quản lý order đồ ăn trong quán coffe/nhà hàng.</br>
-						Quản lý theo dõi đăng nhập và sử dụng máy tính (Keyloger).
-					</p>
-					<span class="up">Link projects </span><a
-						href="https://www.github.com/DangNguyenTH4">https://www.github.com/DangNguyenTH4</a>
-				</div>
-			</div>
-		</div>
-	</div> <!-- end edu  -->
+            <li><a href="src/content/getusermedia/canvas/">Use getUserMedia with canvas</a></li>
 
-	<div class="edu" id="TinhCach">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 tieudeto text-xs-center">
-					<h1>Tính cách</h1>
-					<p>Bản thân là một người hiền hòa, biết lắng nghe, thích những ý tưởng, thích đọc truyện
-						ngôn tình, tiểu thuyết.<br>
-						Luôn cảm thấy tràn đầy năng lượng và lạc quan với cuộc sống.<br>
-						Thích đá bóng, nhưng ít khi xem bóng đá.
-					</p>
-				</div>
-			</div>
-		</div>
-	</div> <!-- Tinh cach  -->
+            <li><a href="src/content/getusermedia/filter/">Use getUserMedia with canvas and CSS filters</a></li>
 
+            <li><a href="src/content/getusermedia/resolution/">Choose camera resolution</a></li>
 
-	<div class="up phanhoi" id="phanhoi">
-		<div class="container text-xs-center">
-			<div class="row">
-				<div class="up col-sm-12">
-					<h2>Phản hồi </h2>
+            <li><a href="src/content/getusermedia/audio/">Audio-only getUserMedia() output to local audio element</a>
+            </li>
 
-				</div>
-				<div class="up col-sm-8 push-sm-2">
-					<div class="fb-comments" data-href="https://dangnguyenth4.github.io" data-width="576"
-						data-numposts="5"></div>
-				</div>
-			</div>
+            <li><a href="src/content/getusermedia/volume/">Audio-only getUserMedia() displaying volume</a></li>
 
-		</div>
-	</div>
-	<div class="santa2"></div>
-	<div>
-		<audio id="au">
-			<!--
-	   		<source src="vendor/mp3/HappyNewYear-ABBA_3rkqc.mp3" type="audio/mpeg" />
-			-->
-			<source src="https://aredir.nixcdn.com/Unv_Audio5/HappyNewYear-ABBA_3rkqc.mp3" type="audio/mpeg" />
-		</audio>
-	</div>
-	<script>
-		$(document).ready(function () {
+            <li><a href="src/content/getusermedia/record/">Record stream</a></li>
 
-			document.getElementById("au").volume = 0.5;
-			document.body.addEventListener("mousemove", playMusic);
-			function playMusic() {
-				
-				playList(listTetSong);
-				
-			}
-		});
-		var isUserStop = false;
-		function pause() {
-			var au = document.getElementById("au");
-			var stop = document.getElementById("stopMusic");
-			if (!au.paused) {
-				au.pause();
-				stop.innerText="Play Music";
-			}
-			else {
-				// au.play();
-				//play();
-				playList(listTetSong);
-				stop.innerText="Stop Music";
-			}
-			isUserStop = !isUserStop;
-		}
-		var listChrismastSong = [''];
-		var listHappyNewYesrSong=["https://aredir.nixcdn.com/Unv_Audio5/HappyNewYear-ABBA_3rkqc.mp3"];
-		var listTetSong =[
-			//Ngay xuan long phung sum vay
-			"http://vnso-zn-15-tf-mp3-s1-zmp3.zadn.vn/ac5c45409f04765a2f15/8150194042498772463?authen=exp=1578490043~acl=/ac5c45409f04765a2f15/*~hmac=8ccd0a694b84eb47ed59f509206dbc66&amp;filename=Ng%C3%A0y%20Xu%C3%A2n%20Long%20Ph%E1%BB%A5ng%20Sum%20V%E1%BA%A7y.mp3"
-			//Ngay tet que em
-			,"https://aredir.nixcdn.com/NhacCuaTui960/NgayTetQueEm-DuongCuongXPro-5386523.mp3"
-			//Xuan da ve
-			,"http://data57.chiasenhac.com/downloads/1209/2/1208114-936ca890/128/Xuan%20Da%20Ve%20-%20Ha%20Thuy%20Anh_%20The%20Voice%20Team%20[128kbps_MP3].mp3"
-		];
-		function playList(listSong){
-			var i = Math.floor(Math.random() * listSong.length);
-			var au = document.getElementById("au");
-			if (au.paused && !isUserStop) {
-			console.log("PlayList"+i);
-			au.src = listSong[i];
-			au.play();
-			}
-		}
-		function play() {
-			var i = Math.floor(Math.random() * 100) + 1;
-			var au = document.getElementById("au");
-			var santa = document.getElementsByClassName("santa");
-			if (au.paused && !isUserStop) {
-				if (i % 2 == 0) {
-					console.log("Play crazy" + i);
-					//au.src = "vendor/mp3/HappyNewYear-ABBA_3rkqc.mp3";
-					au.src = "https://aredir.nixcdn.com/Unv_Audio5/HappyNewYear-ABBA_3rkqc.mp3";
-					au.play();
-					santa[0].style.animationDuration = "8s";
-				}
-				else {
-					console.log("Play Normal" + i);
-					//au.src = "vendor/mp3/HappyNewYear-ABBA_3rkqc.mp3";
-					au.src = "https://aredir.nixcdn.com/Unv_Audio5/HappyNewYear-ABBA_3rkqc.mp3";
-					au.play();
-					santa[0].style.animationDuration = "40s";
-				}
-			}
+            <li><a href="src/content/getusermedia/getdisplaymedia/">Screensharing with getDisplayMedia</a></li>
+        </ul>
+        <h2 id="devices">Devices:</h2>
+        <p class="description">Query media devices</p>
+        <ul>
+            <li><a href="src/content/devices/input-output/">Choose camera, microphone and speaker</a></li>
 
-		}
+            <li><a href="src/content/devices/multi/">Choose media source and audio output</a></li>
+        </ul>
 
-	</script>
+        <h2 id="capture">Stream capture:</h2>
+        <p class="description">Stream from canvas or video elements</p>
+        <ul>
+
+            <li><a href="src/content/capture/video-video/">Stream from a video element to a video element</a></li>
+
+            <li><a href="src/content/capture/video-pc/">Stream from a video element to a peer connection</a></li>
+
+            <li><a href="src/content/capture/canvas-video/">Stream from a canvas element to a video element</a></li>
+
+            <li><a href="src/content/capture/canvas-pc/">Stream from a canvas element to a peer connection</a></li>
+
+            <li><a href="src/content/capture/canvas-record/">Record a stream from a canvas element</a></li>
+
+            <li><a href="src/content/capture/video-contenthint/">Guiding video encoding with content hints</a></li>
+        </ul>
+
+        <h2 id="peerconnection"><a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection">RTCPeerConnection:</a>
+        </h2>
+        <p class="description">Controlling peer connectivity</p>
+        <ul>
+            <li><a href="src/content/peerconnection/pc1/">Basic peer connection demo</a></li>
+
+            <li><a href="src/content/peerconnection/audio/">Audio-only peer connection demo</a></li>
+
+            <li><a href="src/content/peerconnection/bandwidth/">Change bandwidth on the fly</a></li>
+
+            <li><a href="src/content/peerconnection/change-codecs/">Change codecs before the call</a></li>
+
+            <li><a href="src/content/peerconnection/upgrade/">Upgrade a call and turn video on</a></li>
+
+            <li><a href="src/content/peerconnection/multiple/">Multiple peer connections at once</a></li>
+
+            <li><a href="src/content/peerconnection/multiple-relay/">Forward the output of one PC into another</a></li>
+
+            <li><a href="src/content/peerconnection/munge-sdp/">Munge SDP parameters</a></li>
+
+            <li><a href="src/content/peerconnection/pr-answer/">Use pranswer when setting up a peer connection</a></li>
+
+            <li><a href="src/content/peerconnection/constraints/">Constraints and stats</a></li>
+
+            <li><a href="src/content/peerconnection/old-new-stats/">More constraints and stats</a></li>
+
+            <li><a href="src/content/peerconnection/create-offer/">Display createOffer output for various scenarios</a>
+            </li>
+
+            <li><a href="src/content/peerconnection/dtmf/">Use RTCDTMFSender</a></li>
+
+            <li><a href="src/content/peerconnection/states/">Display peer connection states</a></li>
+
+            <li><a href="src/content/peerconnection/trickle-ice/">ICE candidate gathering from STUN/TURN servers</a>
+            </li>
+
+            <li><a href="src/content/peerconnection/restart-ice/">Do an ICE restart</a></li>
+
+            <li><a href="src/content/peerconnection/webaudio-input/">Web Audio output as input to peer connection</a>
+            </li>
+
+            <li><a href="src/content/peerconnection/webaudio-output/">Peer connection as input to Web Audio</a></li>
+            <li><a href="src/content/peerconnection/endtoend-encryption">End to end encryption using Insertable Streams</a></li> (Experimental)
+            <li><a href="src/content/peerconnection/video-analyzer">Video analyzer using Insertable Streams</a></li> (Experimental)
+        </ul>
+        <h2 id="datachannel"><a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel">RTCDataChannel:</a></h2>
+        <p class="description">Send arbitrary data over peer connections</p>
+        <ul>
+            <li><a href="src/content/datachannel/basic/">Transmit text</a></li>
+
+            <li><a href="src/content/datachannel/filetransfer/">Transfer a file</a></li>
+
+            <li><a href="src/content/datachannel/datatransfer/">Transfer data</a></li>
+            
+            <li><a href="src/content/datachannel/messaging/">Messaging</a></li>
+        </ul>
+
+        <h2 id="videoChat">Video chat:</h2>
+        <p class="description">Full featured WebRTC application</p>
+        <ul>
+
+            <li><a href="https://apprtc.appspot.com/">AppRTC video chat client</a> powered by Google App Engine</li>
+
+            <li><a href="https://apprtc.appspot.com/params.html">AppRTC URL parameters</a></li>
+
+        </ul>
+    </section>
+
+</div>
+
+<script src="src/js/lib/ga.js"></script>
 
 </body>
+</html>
