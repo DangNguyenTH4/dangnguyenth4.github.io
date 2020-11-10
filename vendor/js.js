@@ -20,6 +20,6 @@
 })
 $(document).on('click','div#callme',function(){
 	document.getElementById("au").pause();
-	window.open("filePDF/CV_NguyenTheDang.pdf")
+	window.open("https://www.topcv.vn/xem-cv/cff9385bbaf5b6aa00442cf821c8157b")
 });
 
