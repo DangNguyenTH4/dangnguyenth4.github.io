@@ -26,7 +26,7 @@ function GlobalLogger() {
         
         let target = location.protocol;
         console.log("GET LOGGER FOR: " + target);
-        if(target ==='https'){
+        if(target.includes('https')){
             return new NonLogger();
         }else{
             return new Logger();
