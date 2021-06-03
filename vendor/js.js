@@ -20,6 +20,6 @@
 })
 $(document).on('click','div#callme',function(){
 	document.getElementById("au").pause();
-	window.open("https://www.topcv.vn/xem-cv/cff9385bbaf5b6aa00442cf821c8157b")
+	window.open("https://www.topcv.vn/xem-cv/BgJQD1AKBAYBUFVXW1dSB1YGUFFUBwMNVAJQWw157b")
 });
 
