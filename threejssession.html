@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lộ trình học Three.js</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .progress-bar {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .progress-fill {
+            height: 30px;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A);
+            border-radius: 15px;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        .levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        .level {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        .level:hover {
+            transform: translateY(-5px);
+        }
+        .level-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .level-icon {
+            font-size: 2em;
+            margin-right: 15px;
+        }
+        .level-title {
+            flex: 1;
+        }
+        .level-title h2 {
+            color: #333;
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+        .level-title .duration {
+            color: #888;
+            font-size: 0.9em;
+        }
+        .topic {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            transition: background 0.2s ease;
+            cursor: pointer;
+        }
+        .topic:hover {
+            background: #f8f9fa;
+        }
+        .topic.completed {
+            background: #e8f5e9;
+        }
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            min-width: 24px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .topic.completed .checkbox {
+            background: #4CAF50;
+            border-color: #4CAF50;
+        }
+        .checkbox::after {
+            content: '✓';
+            color: white;
+            font-size: 16px;
+            display: none;
+        }
+        .topic.completed .checkbox::after {
+            display: block;
+        }
+        .topic-content {
+            flex: 1;
+        }
+        .topic-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        .topic.completed .topic-name {
+            color: #4CAF50;
+        }
+        .topic-desc {
+            font-size: 0.85em;
+            color: #666;
+            line-height: 1.4;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .resources {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .resources h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .resource-link {
+            display: block;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #667eea;
+            transition: all 0.2s ease;
+        }
+        .resource-link:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Lộ trình học Three.js</h1>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%">0%</div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="completedCount">0</div>
+                <div class="stat-label">Đã hoàn thành</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalCount">0</div>
+                <div class="stat-label">Tổng topics</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="percentComplete">0%</div>
+                <div class="stat-label">Tiến độ</div>
+            </div>
+        </div>
+
+        <div class="levels" id="levelsContainer"></div>
+
+        <div class="resources">
+            <h2>📚 Tài liệu học tập</h2>
+            <a href="https://threejs.org/docs/" target="_blank" class="resource-link">📖 Three.js Documentation (Official)</a>
+            <a href="https://threejs.org/examples/" target="_blank" class="resource-link">💻 Three.js Examples</a>
+            <a href="https://discoverthreejs.com/" target="_blank" class="resource-link">📚 Discover Three.js (Free Book)</a>
+            <a href="https://www.youtube.com/results?search_query=three.js+tutorial" target="_blank" class="resource-link">🎥 YouTube Tutorials</a>
+        </div>
+    </div>
+
+    <script>
+        const curriculum = [
+            {
+                level: "Cơ bản",
+                icon: "🌱",
+                duration: "Tuần 1-2",
+                topics: [
+                    { name: "Setup môi trường", desc: "Cài đặt Three.js, tạo project đầu tiên" },
+                    { name: "Scene, Camera, Renderer", desc: "3 thành phần cốt lõi của Three.js" },
+                    { name: "Geometries cơ bản", desc: "Box, Sphere, Plane, Cylinder" },
+                    { name: "Materials", desc: "MeshBasicMaterial, MeshStandardMaterial" },
+                    { name: "Lighting", desc: "AmbientLight, PointLight, DirectionalLight" },
+                    { name: "Animation Loop", desc: "requestAnimationFrame, cập nhật objects" },
+                    { name: "Position & Rotation", desc: "Di chuyển và xoay objects" },
+                    { name: "Colors", desc: "Làm việc với màu sắc trong Three.js" }
+                ]
+            },
+            {
+                level: "Trung cấp",
+                icon: "🌿",
+                duration: "Tuần 3-4",
+                topics: [
+                    { name: "Textures", desc: "Load và áp dụng textures lên objects" },
+                    { name: "Load 3D Models", desc: "GLTF, GLB, OBJ formats" },
+                    { name: "OrbitControls", desc: "Camera controls với chuột" },
+                    { name: "Raycasting", desc: "Detect clicks trên 3D objects" },
+                    { name: "Shadows", desc: "Tạo và cấu hình shadows" },
+                    { name: "Groups", desc: "Nhóm nhiều objects lại" },
+                    { name: "Fog", desc: "Tạo hiệu ứng sương mù" },
+                    { name: "Responsive Design", desc: "Xử lý resize window" }
+                ]
+            },
+            {
+                level: "Nâng cao",
+                icon: "🌳",
+                duration: "Tuần 5-6",
+                topics: [
+                    { name: "Custom Shaders", desc: "Vertex & Fragment shaders với GLSL" },
+                    { name: "Post-processing", desc: "Effects như bloom, blur, glitch" },
+                    { name: "Particle Systems", desc: "Tạo hệ thống hạt" },
+                    { name: "Physics Engine", desc: "Tích hợp Cannon.js hoặc Ammo.js" },
+                    { name: "Performance Optimization", desc: "LOD, Instancing, Frustum culling" },
+                    { name: "Custom Geometries", desc: "Tạo geometry từ vertices" },
+                    { name: "Advanced Animation", desc: "GSAP, morph targets, skeletal animation" },
+                    { name: "Environment Maps", desc: "HDR, reflection, refraction" }
+                ]
+            },
+            {
+                level: "Chuyên sâu",
+                icon: "🏆",
+                duration: "Tuần 7+",
+                topics: [
+                    { name: "WebXR", desc: "VR và AR với Three.js" },
+                    { name: "Advanced Shaders", desc: "Noise, procedural textures" },
+                    { name: "GPU Computing", desc: "GPGPU với compute shaders" },
+                    { name: "Complex Scenes", desc: "Quản lý large-scale scenes" },
+                    { name: "Custom Materials", desc: "Tạo material systems riêng" },
+                    { name: "Real-time Rendering", desc: "Kỹ thuật render real-time" }
+                ]
+            }
+        ];
+
+        const levelsContainer = document.getElementById('levelsContainer');
+        let completedTopics = JSON.parse(localStorage.getItem('threejsProgress') || '{}');
+
+        function renderCurriculum() {
+            levelsContainer.innerHTML = '';
+            let totalTopics = 0;
+            let completed = 0;
+
+            curriculum.forEach((level, levelIndex) => {
+                const levelDiv = document.createElement('div');
+                levelDiv.className = 'level';
+                
+                let topicsHTML = '';
+                level.topics.forEach((topic, topicIndex) => {
+                    const key = `${levelIndex}-${topicIndex}`;
+                    const isCompleted = completedTopics[key] || false;
+                    totalTopics++;
+                    if (isCompleted) completed++;
+
+                    topicsHTML += `
+                        <div class="topic ${isCompleted ? 'completed' : ''}" data-key="${key}">
+                            <div class="checkbox"></div>
+                            <div class="topic-content">
+                                <div class="topic-name">${topic.name}</div>
+                                <div class="topic-desc">${topic.desc}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                levelDiv.innerHTML = `
+                    <div class="level-header">
+                        <div class="level-icon">${level.icon}</div>
+                        <div class="level-title">
+                            <h2>${level.level}</h2>
+                            <div class="duration">${level.duration}</div>
+                        </div>
+                    </div>
+                    ${topicsHTML}
+                `;
+
+                levelsContainer.appendChild(levelDiv);
+            });
+
+            updateStats(completed, totalTopics);
+            attachEventListeners();
+        }
+
+        function updateStats(completed, total) {
+            const percent = Math.round((completed / total) * 100);
+            document.getElementById('completedCount').textContent = completed;
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('percentComplete').textContent = percent + '%';
+            document.getElementById('progressFill').style.width = percent + '%';
+            document.getElementById('progressFill').textContent = percent + '%';
+        }
+
+        function attachEventListeners() {
+            document.querySelectorAll('.topic').forEach(topic => {
+                topic.addEventListener('click', function() {
+                    const key = this.dataset.key;
+                    completedTopics[key] = !completedTopics[key];
+                    localStorage.setItem('threejsProgress', JSON.stringify(completedTopics));
+                    renderCurriculum();
+                });
+            });
+        }
+
+        renderCurriculum();
+    </script>
+</body>
+</html>
