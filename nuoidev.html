@@ -73,17 +73,30 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        .content-wrapper::-webkit-scrollbar {
-            width: 6px;
+        /* Custom Scrollbar for all elements */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
         }
 
-        .content-wrapper::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
+        ::-webkit-scrollbar-track {
+            background: transparent;
         }
 
-        .content-wrapper::-webkit-scrollbar-thumb {
-            background: rgba(139, 92, 246, 0.5);
-            border-radius: 3px;
+        ::-webkit-scrollbar-thumb {
+            background: rgba(139, 92, 246, 0.2);
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(139, 92, 246, 0.6);
+        }
+
+        /* Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(139, 92, 246, 0.2) transparent;
         }
 
         /* Mobile optimizations */
@@ -386,7 +399,7 @@
                 try {
                     // TODO: Thay thế URL này bằng API thực tế của bạn
                     // Ví dụ: https://api.yourdomain.com/v1/adopt-dev
-                    const API_URL = 'https://jsonplaceholder.typicode.com/posts';
+                    const API_URL = 'https://dangnt.sunteco.cloud/wp-json/external-form/v1/submit';
 
                     const response = await fetch(API_URL, {
                         method: 'POST',
@@ -473,6 +486,42 @@
                 element.style.fontSize = '16px';
             });
         });
+
+        // Fetch initial comments
+        async function fetchComments() {
+            const commentsSection = document.getElementById('commentsSection');
+            const commentsList = document.getElementById('commentsList');
+
+            try {
+                // API endpoint
+                const API_URL = 'https://dangnt.sunteco.cloud/wp-json/external-form/v1/recent';
+
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error('Failed to fetch comments');
+
+                const data = await response.json();
+                console.log('Fetched comments:', data); // Log for debugging
+
+                // Map API data to our format
+                // Prioritize fields that match the submission payload: name, comment, timestamp
+                const mappedComments = Array.isArray(data) ? data.map(item => ({
+                    name: item.name || item.author_name || (item.email ? item.email.split('@')[0] : 'Người ẩn danh'),
+                    comment: item.comment || item.message || item.body || item.content || '',
+                    time: item.timestamp ? new Date(item.timestamp).toLocaleString('vi-VN') : (item.date ? new Date(item.date).toLocaleString('vi-VN') : new Date().toLocaleString('vi-VN'))
+                })) : [];
+
+                if (mappedComments.length > 0) {
+                    comments = mappedComments;
+                    renderComments();
+                }
+
+            } catch (error) {
+                console.error('Error fetching comments:', error);
+            }
+        }
+
+        // Call on load
+        fetchComments();
     </script>
 </body>
 
