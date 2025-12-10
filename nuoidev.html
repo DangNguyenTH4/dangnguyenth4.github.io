@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -10,147 +11,175 @@
         * {
             -webkit-tap-highlight-color: transparent;
         }
-        
+
         body {
             margin: 0;
             overflow: hidden;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             touch-action: pan-y;
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
-        
+
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
         }
-        
+
         .animate-fadeIn {
             animation: fadeIn 0.3s ease-out;
         }
-        
+
         .animate-slideIn {
             animation: slideIn 0.3s ease-out;
         }
-        
+
         .animate-pulse {
             animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
-        
+
         .content-wrapper {
             max-height: 100vh;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
         }
-        
+
         .content-wrapper::-webkit-scrollbar {
             width: 6px;
         }
-        
+
         .content-wrapper::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.05);
         }
-        
+
         .content-wrapper::-webkit-scrollbar-thumb {
             background: rgba(139, 92, 246, 0.5);
             border-radius: 3px;
         }
-        
+
         /* Mobile optimizations */
         @media (max-width: 768px) {
             .content-wrapper {
                 padding-bottom: 2rem;
             }
         }
-        
+
         /* Prevent text selection on interactive elements */
-        button, .cursor-pointer {
+        button,
+        .cursor-pointer {
             -webkit-user-select: none;
             user-select: none;
         }
-        
+
         /* Better touch targets */
-        button, input, textarea {
+        button,
+        input,
+        textarea {
             touch-action: manipulation;
         }
     </style>
 </head>
+
 <body class="bg-black">
     <canvas id="canvas" class="absolute inset-0"></canvas>
-    
+
     <div class="absolute inset-0 pointer-events-none flex items-start md:items-center justify-center text-white z-10">
         <div class="content-wrapper pointer-events-auto text-center w-full px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
             <!-- Title -->
-            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-3 sm:mb-4 md:mb-6 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse leading-tight">
+            <h1
+                class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-3 sm:mb-4 md:mb-6 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse leading-tight">
                 DỰ ÁN<br class="sm:hidden"> NUÔI DEV
             </h1>
-            
-            <p class="text-base sm:text-lg md:text-xl lg:text-3xl mb-2 sm:mb-3 md:mb-4 text-cyan-300 font-light tracking-wide">
+
+            <p
+                class="text-base sm:text-lg md:text-xl lg:text-3xl mb-2 sm:mb-3 md:mb-4 text-cyan-300 font-light tracking-wide">
                 🚀 Đầu Tư Vào Tương Lai Code 🚀
             </p>
-            
-            <p class="text-sm sm:text-base md:text-lg lg:text-xl mb-4 sm:mb-6 md:mb-8 text-gray-300 max-w-2xl mx-auto px-2">
-                Nuôi một dev như nuôi một con cưng<br class="sm:hidden"> - Cần đủ caffeine, pizza,<br class="sm:hidden"> và internet tốc độ cao
+
+            <p
+                class="text-sm sm:text-base md:text-lg lg:text-xl mb-4 sm:mb-6 md:mb-8 text-gray-300 max-w-2xl mx-auto px-2">
+                Nuôi một dev như nuôi một con cưng<br class="sm:hidden"> - Cần đủ caffeine, pizza,<br class="sm:hidden">
+                và internet tốc độ cao
             </p>
 
             <!-- Features Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6 md:mb-8 max-w-6xl mx-auto">
+            <div
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6 md:mb-8 max-w-6xl mx-auto">
                 <!-- Junior Dev Card -->
-                <div class="bg-gradient-to-br from-cyan-900/40 to-purple-900/40 backdrop-blur-lg p-4 sm:p-5 md:p-6 rounded-xl md:rounded-2xl border border-cyan-500/30 transform transition-all hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/50 text-left">
+                <div
+                    class="bg-gradient-to-br from-cyan-900/40 to-purple-900/40 backdrop-blur-lg p-4 sm:p-5 md:p-6 rounded-xl md:rounded-2xl border border-cyan-500/30 transform transition-all hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/50 text-left">
                     <div class="text-3xl sm:text-4xl mb-2 sm:mb-3">💻</div>
                     <h3 class="text-lg sm:text-xl font-bold mb-1 sm:mb-2 text-cyan-300">Gói Junior Dev</h3>
-                    <p class="text-xs sm:text-sm text-gray-300 mb-2 sm:mb-3">3 bữa mì tôm/ngày + 1 lon Red Bull + WiFi miễn phí</p>
+                    <p class="text-xs sm:text-sm text-gray-300 mb-2 sm:mb-3">3 bữa mì tôm/ngày + 1 lon Red Bull + WiFi
+                        miễn phí</p>
                     <p class="text-xl sm:text-2xl font-bold text-pink-400">500k/tháng</p>
                 </div>
-                
+
                 <!-- Mid-level Dev Card -->
-                <div class="bg-gradient-to-br from-purple-900/40 to-pink-900/40 backdrop-blur-lg p-4 sm:p-5 md:p-6 rounded-xl md:rounded-2xl border border-purple-500/30 transform transition-all hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50 text-left">
+                <div
+                    class="bg-gradient-to-br from-purple-900/40 to-pink-900/40 backdrop-blur-lg p-4 sm:p-5 md:p-6 rounded-xl md:rounded-2xl border border-purple-500/30 transform transition-all hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50 text-left">
                     <div class="text-3xl sm:text-4xl mb-2 sm:mb-3">🎯</div>
                     <h3 class="text-lg sm:text-xl font-bold mb-1 sm:mb-2 text-purple-300">Gói Mid-level Dev</h3>
-                    <p class="text-xs sm:text-sm text-gray-300 mb-2 sm:mb-3">Cơm văn phòng + Coffee unlimited + Bàn gaming</p>
+                    <p class="text-xs sm:text-sm text-gray-300 mb-2 sm:mb-3">Cơm văn phòng + Coffee unlimited + Bàn
+                        gaming</p>
                     <p class="text-xl sm:text-2xl font-bold text-pink-400">1.5tr/tháng</p>
                 </div>
-                
+
                 <!-- Senior Dev Card -->
-                <div class="bg-gradient-to-br from-pink-900/40 to-orange-900/40 backdrop-blur-lg p-4 sm:p-5 md:p-6 rounded-xl md:rounded-2xl border border-pink-500/30 transform transition-all hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/50 text-left sm:col-span-2 lg:col-span-1">
+                <div
+                    class="bg-gradient-to-br from-pink-900/40 to-orange-900/40 backdrop-blur-lg p-4 sm:p-5 md:p-6 rounded-xl md:rounded-2xl border border-pink-500/30 transform transition-all hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/50 text-left sm:col-span-2 lg:col-span-1">
                     <div class="text-3xl sm:text-4xl mb-2 sm:mb-3">🔥</div>
                     <h3 class="text-lg sm:text-xl font-bold mb-1 sm:mb-2 text-pink-300">Gói Senior Dev</h3>
-                    <p class="text-xs sm:text-sm text-gray-300 mb-2 sm:mb-3">Fine dining + Macbook Pro + Work from home</p>
+                    <p class="text-xs sm:text-sm text-gray-300 mb-2 sm:mb-3">Fine dining + Macbook Pro + Work from home
+                    </p>
                     <p class="text-xl sm:text-2xl font-bold text-pink-400">3tr/tháng</p>
                 </div>
             </div>
 
             <!-- CTA Button -->
-            <button 
-                onclick="toggleForm()"
-                id="ctaButton"
+            <button onclick="toggleForm()" id="ctaButton"
                 class="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 active:scale-95 text-white font-bold py-3 sm:py-4 px-8 sm:px-12 rounded-full text-base sm:text-lg md:text-xl mb-4 sm:mb-6 transition-all transform hover:scale-110 shadow-lg shadow-purple-500/50 w-full sm:w-auto max-w-md mx-auto block">
                 💬 Nhận Nuôi Dev Ngay!
             </button>
 
             <!-- Comment Form -->
-            <div id="commentForm" class="hidden bg-black/80 backdrop-blur-xl p-4 sm:p-6 md:p-8 rounded-2xl md:rounded-3xl border border-cyan-500/30 mb-4 sm:mb-6 max-w-md mx-auto animate-fadeIn">
+            <div id="commentForm"
+                class="hidden bg-black/80 backdrop-blur-xl p-4 sm:p-6 md:p-8 rounded-2xl md:rounded-3xl border border-cyan-500/30 mb-4 sm:mb-6 max-w-md mx-auto animate-fadeIn">
                 <div class="space-y-3 sm:space-y-4">
-                    <input
-                        type="text"
-                        id="nameInput"
-                        placeholder="Tên của bạn"
+                    <input type="text" id="nameInput" placeholder="Tên của bạn"
                         class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-900/50 border border-cyan-500/50 rounded-lg md:rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 transition-all text-sm sm:text-base">
-                    <textarea
-                        id="commentInput"
-                        placeholder="Bạn muốn nuôi dev kiểu gì? 😄"
-                        rows="3"
+                    <textarea id="commentInput" placeholder="Bạn muốn nuôi dev kiểu gì? 😄" rows="3"
                         class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-900/50 border border-cyan-500/50 rounded-lg md:rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 resize-none transition-all text-sm sm:text-base"></textarea>
-                    <button
-                        onclick="submitComment()"
+                    <button onclick="submitComment()"
                         class="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 active:scale-95 text-white font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-lg md:rounded-xl transition-all transform hover:scale-105 text-sm sm:text-base">
                         Gửi Ý Kiến 🚀
                     </button>
@@ -158,20 +187,24 @@
             </div>
 
             <!-- Comments Section -->
-            <div id="commentsSection" class="hidden bg-black/60 backdrop-blur-xl p-4 sm:p-6 rounded-2xl md:rounded-3xl border border-purple-500/30 max-w-2xl mx-auto max-h-48 sm:max-h-64 overflow-y-auto">
+            <div id="commentsSection"
+                class="hidden bg-black/60 backdrop-blur-xl p-4 sm:p-6 rounded-2xl md:rounded-3xl border border-purple-500/30 max-w-2xl mx-auto max-h-48 sm:max-h-64 overflow-y-auto">
                 <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-purple-300">💬 Cộng Đồng Nói Gì</h3>
                 <div id="commentsList" class="space-y-2 sm:space-y-3"></div>
             </div>
 
             <!-- Social Links -->
             <div class="mt-4 sm:mt-6 md:mt-8 flex gap-2 sm:gap-3 md:gap-4 justify-center flex-wrap px-2">
-                <div class="bg-cyan-500/20 backdrop-blur-lg px-4 sm:px-5 md:px-6 py-2 sm:py-3 rounded-full border border-cyan-500/50 hover:bg-cyan-500/30 active:scale-95 transition-all cursor-pointer transform hover:scale-110">
+                <div
+                    class="bg-cyan-500/20 backdrop-blur-lg px-4 sm:px-5 md:px-6 py-2 sm:py-3 rounded-full border border-cyan-500/50 hover:bg-cyan-500/30 active:scale-95 transition-all cursor-pointer transform hover:scale-110">
                     <span class="text-cyan-300 text-xs sm:text-sm md:text-base">📱 Facebook</span>
                 </div>
-                <div class="bg-purple-500/20 backdrop-blur-lg px-4 sm:px-5 md:px-6 py-2 sm:py-3 rounded-full border border-purple-500/50 hover:bg-purple-500/30 active:scale-95 transition-all cursor-pointer transform hover:scale-110">
+                <div
+                    class="bg-purple-500/20 backdrop-blur-lg px-4 sm:px-5 md:px-6 py-2 sm:py-3 rounded-full border border-purple-500/50 hover:bg-purple-500/30 active:scale-95 transition-all cursor-pointer transform hover:scale-110">
                     <span class="text-purple-300 text-xs sm:text-sm md:text-base">💼 LinkedIn</span>
                 </div>
-                <div class="bg-pink-500/20 backdrop-blur-lg px-4 sm:px-5 md:px-6 py-2 sm:py-3 rounded-full border border-pink-500/50 hover:bg-pink-500/30 active:scale-95 transition-all cursor-pointer transform hover:scale-110">
+                <div
+                    class="bg-pink-500/20 backdrop-blur-lg px-4 sm:px-5 md:px-6 py-2 sm:py-3 rounded-full border border-pink-500/50 hover:bg-pink-500/30 active:scale-95 transition-all cursor-pointer transform hover:scale-110">
                     <span class="text-pink-300 text-xs sm:text-sm md:text-base">🐦 Twitter</span>
                 </div>
             </div>
@@ -190,7 +223,7 @@
         const canvas = document.getElementById('canvas');
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0x0a0a1a);
-        
+
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.z = 5;
 
@@ -217,7 +250,7 @@
         // Floating dev cubes
         const devCubes = [];
         const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
-        
+
         for (let i = 0; i < cubeCount; i++) {
             const material = new THREE.MeshPhongMaterial({
                 color: Math.random() > 0.5 ? 0x00ffff : 0xff00ff,
@@ -226,7 +259,7 @@
                 transparent: true,
                 opacity: 0.8
             });
-            
+
             const cube = new THREE.Mesh(geometry, material);
             cube.position.x = (Math.random() - 0.5) * 20;
             cube.position.y = (Math.random() - 0.5) * 20;
@@ -238,7 +271,7 @@
                 speedY: (Math.random() - 0.5) * 0.02,
                 rotationSpeed: (Math.random() - 0.5) * 0.05
             };
-            
+
             scene.add(cube);
             devCubes.push(cube);
         }
@@ -247,11 +280,11 @@
         const particlesGeometry = new THREE.BufferGeometry();
         const particleCount = isMobile ? 500 : 1000;
         const positions = new Float32Array(particleCount * 3);
-        
+
         for (let i = 0; i < particleCount * 3; i++) {
             positions[i] = (Math.random() - 0.5) * 50;
         }
-        
+
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
         const particlesMaterial = new THREE.PointsMaterial({
             color: 0xffffff,
@@ -259,7 +292,7 @@
             transparent: true,
             opacity: 0.6
         });
-        
+
         const particles = new THREE.Points(particlesGeometry, particlesMaterial);
         scene.add(particles);
 
@@ -325,7 +358,7 @@
         function toggleForm() {
             const form = document.getElementById('commentForm');
             const button = document.getElementById('ctaButton');
-            
+
             if (form.classList.contains('hidden')) {
                 form.classList.remove('hidden');
                 button.textContent = '❌ Đóng';
@@ -335,38 +368,86 @@
             }
         }
 
-        function submitComment() {
+        async function submitComment() {
             const nameInput = document.getElementById('nameInput');
             const commentInput = document.getElementById('commentInput');
-            
+            const submitButton = document.querySelector('button[onclick="submitComment()"]');
+
             const name = nameInput.value.trim();
             const comment = commentInput.value.trim();
-            
+
             if (name && comment) {
-                const now = new Date();
-                const time = now.toLocaleString('vi-VN');
-                
-                comments.unshift({ name, comment, time });
-                
-                // Clear inputs
-                nameInput.value = '';
-                commentInput.value = '';
-                
-                // Hide form
-                toggleForm();
-                
-                // Show comments section
-                renderComments();
+                // Hiển thị trạng thái đang gửi
+                const originalBtnText = submitButton.textContent;
+                submitButton.textContent = 'Đang gửi... ⏳';
+                submitButton.disabled = true;
+                submitButton.classList.add('opacity-70', 'cursor-not-allowed');
+
+                try {
+                    // TODO: Thay thế URL này bằng API thực tế của bạn
+                    // Ví dụ: https://api.yourdomain.com/v1/adopt-dev
+                    const API_URL = 'https://jsonplaceholder.typicode.com/posts';
+
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            name: name,
+                            comment: comment,
+                            timestamp: new Date().toISOString()
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Gửi thông tin thất bại');
+                    }
+
+                    const data = await response.json();
+                    console.log('API Response:', data);
+
+                    // Xử lý thành công
+                    const now = new Date();
+                    const time = now.toLocaleString('vi-VN');
+
+                    comments.unshift({ name, comment, time });
+
+                    // Clear inputs
+                    nameInput.value = '';
+                    commentInput.value = '';
+
+                    // Hide form
+                    toggleForm();
+
+                    // Show comments section
+                    renderComments();
+
+                    // Hiển thị thông báo thành công
+                    // Có thể dùng thư viện toast hoặc alert đơn giản
+                    alert('Đã gửi thông tin thành công! Cảm ơn bạn đã quan tâm đến Dev. 🚀');
+
+                } catch (error) {
+                    console.error('Lỗi:', error);
+                    alert('Có lỗi xảy ra khi gửi thông tin. Vui lòng thử lại sau!');
+                } finally {
+                    // Khôi phục trạng thái nút
+                    submitButton.textContent = originalBtnText;
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('opacity-70', 'cursor-not-allowed');
+                }
+            } else {
+                alert('Vui lòng điền đầy đủ thông tin!');
             }
         }
 
         function renderComments() {
             const commentsSection = document.getElementById('commentsSection');
             const commentsList = document.getElementById('commentsList');
-            
+
             if (comments.length > 0) {
                 commentsSection.classList.remove('hidden');
-                
+
                 commentsList.innerHTML = comments.map(c => `
                     <div class="bg-gradient-to-r from-cyan-900/20 to-purple-900/20 p-3 sm:p-4 rounded-lg md:rounded-xl border border-cyan-500/20 text-left animate-slideIn">
                         <div class="flex justify-between items-start mb-1 sm:mb-2 gap-2">
@@ -394,4 +475,5 @@
         });
     </script>
 </body>
+
 </html>
