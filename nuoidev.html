@@ -119,6 +119,183 @@
         textarea {
             touch-action: manipulation;
         }
+
+        /* Home Button & Modal Styles */
+        .home-button-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            /* Moved to right */
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .home-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            animation: shake-interval 5s infinite;
+            /* Add shake animation */
+        }
+
+        @keyframes shake-interval {
+
+            0%,
+            90%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            92% {
+                transform: rotate(-10deg);
+            }
+
+            94% {
+                transform: rotate(10deg);
+            }
+
+            96% {
+                transform: rotate(-10deg);
+            }
+
+            98% {
+                transform: rotate(10deg);
+            }
+        }
+
+        .home-button:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+            animation: none;
+            /* Stop shaking on hover */
+        }
+
+        .home-button:active {
+            transform: scale(0.95);
+        }
+
+        .home-button-inner {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .donate-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .donate-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .donate-content {
+            background: linear-gradient(145deg, rgba(20, 20, 30, 0.9), rgba(30, 30, 45, 0.9));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 24px;
+            padding: 30px;
+            max-width: 90%;
+            width: 350px;
+            text-align: center;
+            transform: translateY(50px) scale(0.9);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(139, 92, 246, 0.2);
+        }
+
+        .donate-modal.active .donate-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .qr-container {
+            background: white;
+            padding: 15px;
+            border-radius: 16px;
+            margin: 20px auto;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .qr-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+
+            20% {
+                transform: translateX(100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(100%) rotate(45deg);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .close-modal:hover {
+            background: rgba(255, 0, 0, 0.3);
+            transform: rotate(90deg);
+        }
     </style>
 </head>
 
@@ -225,6 +402,46 @@
             <p class="mt-4 sm:mt-6 md:mt-8 text-gray-500 text-xs sm:text-sm px-2">
                 ⚠️ Đây là dự án vui - không thật đâu nhé! 😄
             </p>
+        </div>
+    </div>
+
+    <!-- Home Button Module -->
+    <div class="home-button-container">
+        <div class="text-xs text-gray-400 font-light tracking-widest uppercase animate-pulse">Donate</div>
+        <div class="home-button" onclick="toggleDonateModal()">
+            <div class="home-button-inner"></div>
+        </div>
+    </div>
+
+    <!-- Donate Modal -->
+    <div id="donateModal" class="donate-modal" onclick="if(event.target === this) toggleDonateModal()">
+        <div class="donate-content">
+            <button class="close-modal" onclick="toggleDonateModal()">✕</button>
+
+            <h3
+                class="text-2xl font-bold bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 bg-clip-text text-transparent mb-2">
+                ☕ Mời Dev Ly Cà Phê
+            </h3>
+
+            <p class="text-gray-300 text-sm mb-4">
+                Để Dev có sức code tiếp những tính năng "vô tri" nhưng vui vẻ này nhé! 🚀
+            </p>
+
+            <div class="qr-container">
+                <img src="https://s3.sunteco.app/publicdata/public/theqr" alt="QR Code Chuyển Khoản"
+                    class="w-full h-full object-contain">
+            </div>
+
+            <p class="text-xs text-gray-400 italic">
+                "Một ly cà phê của bạn = 1000 dòng code sạch (hoặc bug)!" 😄
+            </p>
+
+            <div class="mt-4 flex justify-center gap-2">
+                <span
+                    class="px-3 py-1 bg-gray-800 rounded-full text-xs text-gray-400 border border-gray-700">Momo</span>
+                <span
+                    class="px-3 py-1 bg-gray-800 rounded-full text-xs text-gray-400 border border-gray-700">Banking</span>
+            </div>
         </div>
     </div>
 
@@ -518,6 +735,16 @@
             } catch (error) {
                 console.error('Error fetching comments:', error);
             }
+        }
+
+        // Donate Modal Functions
+        function toggleDonateModal() {
+            const modal = document.getElementById('donateModal');
+            modal.classList.toggle('active');
+
+            // Add a fun sound effect if you want later
+            // const audio = new Audio('pop.mp3');
+            // audio.play();
         }
 
         // Call on load
