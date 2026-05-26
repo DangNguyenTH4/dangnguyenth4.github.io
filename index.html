@@ -4,450 +4,401 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Portfolio của Nguyễn Thế Đăng, Java Developer chuyên Spring Framework, microservices, hệ thống có khả năng mở rộng và kiểm thử hiệu năng.">
     <title>Nguyễn Thế Đăng - Java Developer</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="styles-portfolio.css">
 </head>
 
 <body>
-    <div id="custom-cursor"></div>
-    <div id="loading-screen">
-        <div class="loader-text">ĐANG TẢI...</div>
-        <div class="loader-bar">
-            <div class="loader-progress" id="loader-progress"></div>
-        </div>
-    </div>
-    <canvas id="webgl-canvas"></canvas>
+    <header class="site-header">
+        <nav class="nav-shell" aria-label="Điều hướng chính">
+            <a class="logo" href="#top" aria-label="Nguyễn Thế Đăng">NTĐ</a>
+            <div class="nav-links">
+                <a href="#about">Giới thiệu</a>
+                <a href="#skills">Kỹ năng</a>
+                <a href="#experience">Kinh nghiệm</a>
+                <a href="#projects">Dự án</a>
+                <a href="#certificates">Chứng chỉ</a>
+                <a href="#contact">Liên hệ</a>
+            </div>
+        </nav>
+    </header>
 
-    <nav>
-        <div class="logo">NTĐ</div>
-        <ul class="nav-links">
-            <li><a href="#about">Giới thiệu</a></li>
-            <li><a href="#skills">Kỹ năng</a></li>
-            <li><a href="#experience">Kinh nghiệm</a></li>
-            <li><a href="#projects">Dự án</a></li>
-            <li><a href="#certificates">Chứng chỉ</a></li>
-            <li><a href="#contact">Liên hệ</a></li>
-        </ul>
-    </nav>
+    <main id="top">
+        <section class="hero section-band">
+            <div class="hero-copy">
+                <p class="eyebrow">Java Developer</p>
+                <h1><span>Nguyễn</span><span>Thế Đăng</span></h1>
+                <p class="hero-description">
+                    Xây dựng các giải pháp sáng tạo với Java, Spring Framework và công nghệ web hiện đại.
+                    Chuyên về kiến trúc microservices và hệ thống có khả năng mở rộng.
+                </p>
+                <div class="hero-actions">
+                    <a href="#projects" class="button button-primary">Xem dự án</a>
+                    <a href="https://www.github.com/DangNguyenTH4" class="button button-secondary" target="_blank"
+                        rel="noopener">GitHub</a>
+                </div>
+            </div>
+            <div class="hero-panel" aria-label="Thông tin nhanh">
+                <img class="hero-avatar" src="images/avartar.PNG" alt="Ảnh đại diện Nguyễn Thế Đăng" width="260"
+                    height="260">
+                <div class="hero-facts">
+                    <div>
+                        <span>6+</span>
+                        <p>Năm kinh nghiệm</p>
+                    </div>
+                    <div>
+                        <span>15+</span>
+                        <p>Dự án</p>
+                    </div>
+                    <div>
+                        <span>4</span>
+                        <p>Khách hàng lớn</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-subtitle">Java Developer</div>
-            <h1 class="hero-title glitch">NGUYỄN<br>THẾ ĐĂNG</h1>
-            <p class="hero-description">
-                Xây dựng các giải pháp sáng tạo với Java, Spring Framework và công nghệ web hiện đại.<br>
-                Chuyên về kiến trúc microservices và hệ thống có khả năng mở rộng.
-            </p>
-            <div class="hero-cta">
-                <a href="#projects" class="btn btn-primary">Xem Dự Án</a>
-                <a href="https://www.github.com/DangNguyenTH4" class="btn btn-secondary" target="_blank">GitHub</a>
+        <section id="about" class="section-band">
+            <div class="section-heading">
+                <p class="eyebrow">Về tôi</p>
+                <h2>Lập trình viên yêu code sạch và hệ thống bền vững</h2>
             </div>
-        </div>
-        <div class="scroll-indicator">
-            <span class="scroll-text">Cuộn xuống</span>
-            <div class="scroll-line"></div>
-        </div>
-    </section>
+            <div class="about-grid">
+                <div class="prose">
+                    <p>Tôi là <strong>Nguyễn Thế Đăng</strong>, một Java developer với niềm đam mê xây dựng các ứng dụng
+                        có khả năng mở rộng và hiệu suất cao.</p>
+                    <p>Hành trình của tôi bắt đầu từ <strong>Tiểu học Nguyễn Trãi - Lạng Sơn</strong> (2000-2005), sau
+                        đó học THCS Hương Lâm (2005-2009) và THPT Hiệp Hòa 2 (2010-2013). Tôi từng học tại
+                        <strong>Đại học Bách Khoa</strong> chuyên ngành Công nghệ ô tô (2013-2015), sau đó chuyển sang
+                        <strong>Đại học Thủy Lợi</strong> ngành Công nghệ thông tin (2015-2020). Năm 2019, tôi tốt
+                        nghiệp <strong>FPT Software Academy</strong>.</p>
+                    <p>Hiện tại tôi đang làm việc tại <strong>FPT Software</strong>, tham gia phát triển các dự án từ hệ
+                        thống hàng không đến nền tảng y tế, làm việc với kiến trúc microservices và các công nghệ cloud
+                        hiện đại.</p>
+                    <p>Phương châm sống: <strong>"Dũng cảm - Trắc ẩn - Xả Thân - Trung thành - Lạc quan"</strong>.
+                        Ngoài lập trình, tôi thích đọc tiểu thuyết, chơi bóng đá và khám phá công nghệ mới.</p>
+                </div>
+                <div class="stats-grid" aria-label="Số liệu nổi bật">
+                    <div class="stat-card">
+                        <span>6+</span>
+                        <p>Năm kinh nghiệm</p>
+                    </div>
+                    <div class="stat-card">
+                        <span>15+</span>
+                        <p>Dự án</p>
+                    </div>
+                    <div class="stat-card">
+                        <span>4</span>
+                        <p>Khách hàng lớn</p>
+                    </div>
+                    <div class="stat-card">
+                        <span>∞</span>
+                        <p>Cốc cà phê</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-        <h2 class="section-title">Về Tôi</h2>
-        <p class="section-subtitle">Lập trình viên đam mê code sạch và giải pháp sáng tạo</p>
-        <div class="about-content">
-            <div class="about-text">
-                <p>Tôi là <span class="about-highlight">Nguyễn Thế Đăng</span>, một Java developer với niềm đam mê xây
-                    dựng các ứng dụng có khả năng mở rộng và hiệu suất cao.</p>
-                <p>Hành trình của tôi bắt đầu từ <span class="about-highlight">Tiểu học Nguyễn Trãi - Lạng Sơn</span>
-                    (2000-2005), sau đó học THCS Hương Lâm (2005-2009) và THPT Hiệp Hòa 2 (2010-2013). Tôi từng học tại
-                    <span class="about-highlight">Đại học Bách Khoa</span> chuyên ngành Công nghệ ô tô (2013-2015), sau
-                    đó chuyển sang <span class="about-highlight">Đại học Thủy Lợi</span> ngành Công nghệ thông tin
-                    (2015-2020). Năm 2019, tôi tốt nghiệp <span class="about-highlight">FPT Software Academy</span>.</p>
-                <p>Hiện tại tôi đang làm việc tại <span class="about-highlight">FPT Software</span>, tham gia phát triển
-                    các dự án từ hệ thống hàng không đến nền tảng y tế, làm việc với kiến trúc microservices và các công
-                    nghệ cloud hiện đại.</p>
-                <p>Phương châm sống: <span class="about-highlight">"Dũng cảm - Trắc ẩn - Xả Thân - Trung thành - Lạc
-                        quan"</span>. Ngoài lập trình, tôi thích đọc tiểu thuyết, chơi bóng đá và khám phá công nghệ
-                    mới.</p>
+        <section id="skills" class="section-band section-muted">
+            <div class="section-heading">
+                <p class="eyebrow">Kỹ năng & Công nghệ</p>
+                <h2>Các công cụ tôi sử dụng để xây dựng sản phẩm</h2>
             </div>
-            <div class="about-stats">
-                <div class="stat-card">
-                    <div class="stat-number">6+</div>
-                    <div class="stat-label">Năm kinh nghiệm</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">15+</div>
-                    <div class="stat-label">Dự án</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">4</div>
-                    <div class="stat-label">Khách hàng lớn</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">∞</div>
-                    <div class="stat-label">Cốc cà phê</div>
-                </div>
+            <div class="skills-grid">
+                <article class="skill-card">
+                    <p>Backend</p>
+                    <h3>Java Ecosystem</h3>
+                    <ul>
+                        <li>Java 8, 11 (Amazon Corretto)</li>
+                        <li>Spring Framework (Boot, MVC, Security)</li>
+                        <li>Microservices Architecture</li>
+                        <li>RESTful APIs</li>
+                    </ul>
+                </article>
+                <article class="skill-card">
+                    <p>Frontend</p>
+                    <h3>Web Technologies</h3>
+                    <ul>
+                        <li>HTML5, CSS3, JavaScript</li>
+                        <li>Angular 8</li>
+                        <li>jQuery</li>
+                        <li>Responsive Design</li>
+                    </ul>
+                </article>
+                <article class="skill-card">
+                    <p>Database</p>
+                    <h3>Data Management</h3>
+                    <ul>
+                        <li>PostgreSQL</li>
+                        <li>SQL Server</li>
+                        <li>Redis 3.2</li>
+                        <li>T-SQL</li>
+                    </ul>
+                </article>
+                <article class="skill-card">
+                    <p>DevOps & Cloud</p>
+                    <h3>Infrastructure</h3>
+                    <ul>
+                        <li>AWS (Amazon Web Services)</li>
+                        <li>Consul 1.7.8</li>
+                        <li>Git & Git Bash</li>
+                        <li>Linux, DigitalOcean</li>
+                    </ul>
+                </article>
+                <article class="skill-card">
+                    <p>Testing</p>
+                    <h3>Quality Assurance</h3>
+                    <ul>
+                        <li>JMeter - Performance Testing</li>
+                        <li>Load Testing</li>
+                        <li>Stress Testing</li>
+                        <li>Benchmark Testing</li>
+                    </ul>
+                </article>
+                <article class="skill-card">
+                    <p>Other</p>
+                    <h3>Additional Skills</h3>
+                    <ul>
+                        <li>C# .NET</li>
+                        <li>C/C++, Arduino</li>
+                        <li>OpenGL, OpenStack</li>
+                        <li>AutoIT, CakePHP</li>
+                    </ul>
+                </article>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- SKILLS -->
-    <section id="skills">
-        <h2 class="section-title">Kỹ Năng & Công Nghệ</h2>
-        <p class="section-subtitle">Các công cụ và công nghệ tôi sử dụng</p>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <div class="skill-category">Backend</div>
-                <h3 class="skill-name">Java Ecosystem</h3>
-                <ul class="skill-list">
-                    <li>Java 8, 11 (Amazon Corretto)</li>
-                    <li>Spring Framework (Boot, MVC, Security)</li>
-                    <li>Microservices Architecture</li>
-                    <li>RESTful APIs</li>
-                </ul>
+        <section id="experience" class="section-band">
+            <div class="section-heading">
+                <p class="eyebrow">Kinh nghiệm</p>
+                <h2>Hành trình nghề nghiệp</h2>
             </div>
-            <div class="skill-card">
-                <div class="skill-category">Frontend</div>
-                <h3 class="skill-name">Web Technologies</h3>
-                <ul class="skill-list">
-                    <li>HTML5, CSS3, JavaScript</li>
-                    <li>Angular 8</li>
-                    <li>jQuery</li>
-                    <li>Responsive Design</li>
-                </ul>
+            <div class="timeline">
+                <article class="timeline-item">
+                    <time>Tháng 4/2019 - Hiện tại</time>
+                    <h3>Java Developer</h3>
+                    <p class="timeline-company">FPT Software</p>
+                    <p>Phát triển ứng dụng doanh nghiệp trong lĩnh vực y tế và hàng không. Làm việc với kiến trúc
+                        microservices, Spring Framework và công nghệ cloud. Tham gia 4 dự án lớn với vai trò Java
+                        Developer và Performance Tester.</p>
+                </article>
+                <article class="timeline-item">
+                    <time>Tháng 4/2019</time>
+                    <h3>FPT Software Academy</h3>
+                    <p class="timeline-company">FPT Software</p>
+                    <p>Hoàn thành khóa đào tạo chuyên sâu về Java và Spring Framework tại FPT Software Academy, chuẩn bị
+                        cho sự nghiệp phát triển phần mềm chuyên nghiệp.</p>
+                </article>
+                <article class="timeline-item">
+                    <time>Tháng 12/2017 - 7/2018</time>
+                    <h3>Nghiên Cứu Sinh</h3>
+                    <p class="timeline-company">Phòng Nghiên Cứu Netlab</p>
+                    <p>Nghiên cứu về OpenStack - ảo hóa, ảo hóa chức năng mạng (NFV) dựa trên điện toán đám mây. Tìm
+                        hiểu về virtualization và cloud computing technologies.</p>
+                </article>
+                <article class="timeline-item">
+                    <time>Tháng 10/2017 - 1/2018</time>
+                    <h3>Front-end Developer</h3>
+                    <p class="timeline-company">Lampar Technology</p>
+                    <p>Phát triển ứng dụng web responsive sử dụng HTML, CSS, JavaScript, jQuery và tìm hiểu CakePHP
+                        framework.</p>
+                </article>
             </div>
-            <div class="skill-card">
-                <div class="skill-category">Database</div>
-                <h3 class="skill-name">Data Management</h3>
-                <ul class="skill-list">
-                    <li>PostgreSQL</li>
-                    <li>SQL Server</li>
-                    <li>Redis 3.2</li>
-                    <li>T-SQL</li>
-                </ul>
-            </div>
-            <div class="skill-card">
-                <div class="skill-category">DevOps & Cloud</div>
-                <h3 class="skill-name">Infrastructure</h3>
-                <ul class="skill-list">
-                    <li>AWS (Amazon Web Services)</li>
-                    <li>Consul 1.7.8</li>
-                    <li>Git & Git Bash</li>
-                    <li>Linux, DigitalOcean</li>
-                </ul>
-            </div>
-            <div class="skill-card">
-                <div class="skill-category">Testing</div>
-                <h3 class="skill-name">Quality Assurance</h3>
-                <ul class="skill-list">
-                    <li>JMeter - Performance Testing</li>
-                    <li>Load Testing</li>
-                    <li>Stress Testing</li>
-                    <li>Benchmark Testing</li>
-                </ul>
-            </div>
-            <div class="skill-card">
-                <div class="skill-category">Other</div>
-                <h3 class="skill-name">Additional Skills</h3>
-                <ul class="skill-list">
-                    <li>C# .NET</li>
-                    <li>C/C++, Arduino</li>
-                    <li>OpenGL, OpenStack</li>
-                    <li>AutoIT, CakePHP</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- EXPERIENCE -->
-    <section id="experience">
-        <h2 class="section-title">Kinh Nghiệm</h2>
-        <p class="section-subtitle">Hành trình nghề nghiệp của tôi</p>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-year">Tháng 4/2019 - Hiện tại</div>
-                    <h3 class="timeline-title">Java Developer</h3>
-                    <div class="timeline-company">FPT Software</div>
-                    <p class="timeline-description">Phát triển ứng dụng doanh nghiệp trong lĩnh vực y tế và hàng không.
-                        Làm việc với kiến trúc microservices, Spring Framework và công nghệ cloud. Tham gia 4 dự án lớn
-                        với vai trò Java Developer và Performance Tester.</p>
-                </div>
+        <section id="projects" class="section-band section-muted">
+            <div class="section-heading">
+                <p class="eyebrow">Dự án nổi bật</p>
+                <h2>Các công việc và sản phẩm đã tham gia</h2>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-year">Tháng 4/2019</div>
-                    <h3 class="timeline-title">FPT Software Academy</h3>
-                    <div class="timeline-company">FPT Software</div>
-                    <p class="timeline-description">Hoàn thành khóa đào tạo chuyên sâu về Java và Spring Framework tại
-                        FPT Software Academy, chuẩn bị cho sự nghiệp phát triển phần mềm chuyên nghiệp.</p>
-                </div>
+            <div class="projects-grid">
+                <article class="project-card">
+                    <div class="project-meta">
+                        <span>Y tế</span>
+                        <time>6/2020 - Hiện tại</time>
+                    </div>
+                    <h3>Hệ Thống Quản Lý Kho</h3>
+                    <p class="project-role">Vai trò: Java Developer</p>
+                    <p>Phát triển hệ thống vệ tinh quản lý hàng trong kho, vận chuyển và tiêu thụ. Tích hợp với 6 hệ
+                        thống khác và triển khai tính năng gợi ý nhập hàng thông minh.</p>
+                    <div class="tags">
+                        <span>Java 11</span><span>Microservices</span><span>Redis 3.2</span><span>AWS</span><span>Consul</span><span>PostgreSQL</span>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-meta">
+                        <span>Y tế</span>
+                        <time>2/2020 - 6/2020</time>
+                    </div>
+                    <h3>Healthcare Rush Project</h3>
+                    <p class="project-role">Vai trò: Java Developer</p>
+                    <p>Tham gia dự án y tế cấp bách, mở rộng hệ thống hiện có với các tính năng mới. Xử lý logic nghiệp
+                        vụ phức tạp và tích hợp với kiến trúc microservice.</p>
+                    <div class="tags">
+                        <span>Java 8</span><span>Monolithic</span><span>Spring</span>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-meta">
+                        <span>Y tế</span>
+                        <time>11/2019 - 2/2020</time>
+                    </div>
+                    <h3>Performance Testing Suite</h3>
+                    <p class="project-role">Vai trò: Performance Tester</p>
+                    <p>Triển khai kiểm thử hiệu năng toàn diện cho nền tảng y tế. Thực hiện stress testing, load testing,
+                        benchmark testing và endurance testing sử dụng JMeter 5.x.</p>
+                    <div class="tags">
+                        <span>JMeter 5.x</span><span>Microservices</span><span>Confluence</span>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-meta">
+                        <span>Hàng không</span>
+                        <time>8/2019 - 11/2019</time>
+                    </div>
+                    <h3>Hệ Thống Quản Lý Chuyến Bay</h3>
+                    <p class="project-role">Vai trò: Java Developer</p>
+                    <p>Phát triển hệ thống quản lý chuyến bay tổng hợp dữ liệu từ 3 hệ thống khác nhau. Tạo báo cáo và
+                        xuất Excel cho chuyến bay nội địa và quốc tế.</p>
+                    <div class="tags">
+                        <span>Java</span><span>Spring</span><span>Angular 8</span><span>SQL Server</span>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-meta">
+                        <span>Pet Project - Java</span>
+                        <time>Cá nhân</time>
+                    </div>
+                    <h3>Quản Lý Nhà Thuốc Thú Y</h3>
+                    <p class="project-role">Vai trò: Full-Stack Developer</p>
+                    <p>Xây dựng hệ thống quản lý hoàn chỉnh cho nhà thuốc thú y với theo dõi tồn kho, quản lý bán hàng
+                        và báo cáo. Triển khai trên DigitalOcean.</p>
+                    <div class="tags">
+                        <span>Java</span><span>Angular 8</span><span>PostgreSQL</span><span>Linux</span><span>Tomcat</span>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-meta">
+                        <span>Pet Project - Java</span>
+                        <time>Cá nhân</time>
+                    </div>
+                    <h3>Hệ Thống Quản Lý Giáo Dục</h3>
+                    <p class="project-role">Vai trò: Full-Stack Developer</p>
+                    <p>MockProject quản lí giảng viên, mentor, học viên, lớp học. Hệ thống quản lý toàn diện cho trung
+                        tâm đào tạo với đầy đủ tính năng quản lý lớp học.</p>
+                    <div class="tags">
+                        <span>Java</span><span>Spring Boot</span><span>MySQL</span>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-meta">
+                        <span>Pet Project - C#</span>
+                        <time>Cá nhân</time>
+                    </div>
+                    <h3>Học Tiếng Anh Qua Hình Ảnh</h3>
+                    <p class="project-role">Vai trò: Developer</p>
+                    <p>Phần mềm học phát âm và ghi nhớ từ vựng tiếng Anh qua hình ảnh. Ứng dụng giúp cải thiện phát âm
+                        và mở rộng vốn từ vựng thông qua phương pháp học trực quan.</p>
+                    <div class="tags">
+                        <span>C#</span><span>.NET</span><span>WinForms</span>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-meta">
+                        <span>Pet Project - Java</span>
+                        <time>Cá nhân</time>
+                    </div>
+                    <h3>English Learning Notification</h3>
+                    <p class="project-role">Vai trò: Developer</p>
+                    <p>Ứng dụng học tiếng Anh thông qua thông báo cưỡng bức (force notification). Giúp người dùng học từ
+                        vựng mới mỗi ngày một cách tự động.</p>
+                    <div class="tags">
+                        <span>Java</span><span>Swing</span>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-meta">
+                        <span>Pet Project - C#</span>
+                        <time>Cá nhân</time>
+                    </div>
+                    <h3>Quản Lý Order Nhà Hàng</h3>
+                    <p class="project-role">Vai trò: Developer</p>
+                    <p>Phần mềm quản lý order đồ ăn trong quán coffee/nhà hàng. Hệ thống giúp quản lý đơn hàng, menu,
+                        thanh toán và theo dõi doanh thu.</p>
+                    <div class="tags">
+                        <span>C#</span><span>.NET</span><span>SQL Server</span>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-meta">
+                        <span>Pet Project - C#</span>
+                        <time>Cá nhân</time>
+                    </div>
+                    <h3>Computer Usage Tracker</h3>
+                    <p class="project-role">Vai trò: Developer</p>
+                    <p>Quản lý theo dõi đăng nhập và sử dụng máy tính (Keylogger). Ứng dụng giám sát hoạt động máy tính,
+                        theo dõi thời gian sử dụng.</p>
+                    <div class="tags">
+                        <span>C#</span><span>.NET</span><span>Windows API</span>
+                    </div>
+                </article>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-year">Tháng 12/2017 - 7/2018</div>
-                    <h3 class="timeline-title">Nghiên Cứu Sinh</h3>
-                    <div class="timeline-company">Phòng Nghiên Cứu Netlab</div>
-                    <p class="timeline-description">Nghiên cứu về OpenStack - ảo hóa, ảo hóa chức năng mạng (NFV) dựa
-                        trên điện toán đám mây. Tìm hiểu về virtualization và cloud computing technologies.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-year">Tháng 10/2017 - 1/2018</div>
-                    <h3 class="timeline-title">Front-end Developer</h3>
-                    <div class="timeline-company">Lampar Technology</div>
-                    <p class="timeline-description">Phát triển ứng dụng web responsive sử dụng HTML, CSS, JavaScript,
-                        jQuery và tìm hiểu CakePHP framework.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- PROJECTS -->
-    <section id="projects">
-        <h2 class="section-title">Dự Án Nổi Bật</h2>
-        <p class="section-subtitle">Các công việc và thành tựu gần đây</p>
-        <div class="projects-container">
-            <!-- FPT Projects -->
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="project-type">Y tế</span>
-                    <span class="project-date">6/2020 - Hiện tại</span>
+        <section id="certificates" class="section-band">
+            <div class="section-heading section-heading-row">
+                <div>
+                    <p class="eyebrow">Chứng chỉ & Khóa học</p>
+                    <h2>Slide chứng chỉ</h2>
                 </div>
-                <h3 class="project-title">Hệ Thống Quản Lý Kho</h3>
-                <div class="project-role">Vai trò: Java Developer</div>
-                <p class="project-description">Phát triển hệ thống vệ tinh quản lý hàng trong kho, vận chuyển và tiêu
-                    thụ. Tích hợp với 6 hệ thống khác và triển khai tính năng gợi ý nhập hàng thông minh.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">Java 11</span>
-                    <span class="tech-tag">Microservices</span>
-                    <span class="tech-tag">Redis 3.2</span>
-                    <span class="tech-tag">AWS</span>
-                    <span class="tech-tag">Consul</span>
-                    <span class="tech-tag">PostgreSQL</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="project-type">Y tế</span>
-                    <span class="project-date">2/2020 - 6/2020</span>
-                </div>
-                <h3 class="project-title">Healthcare Rush Project</h3>
-                <div class="project-role">Vai trò: Java Developer</div>
-                <p class="project-description">Tham gia dự án y tế cấp bách, mở rộng hệ thống hiện có với các tính năng
-                    mới. Xử lý logic nghiệp vụ phức tạp và tích hợp với kiến trúc microservice.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">Java 8</span>
-                    <span class="tech-tag">Monolithic</span>
-                    <span class="tech-tag">Spring</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="project-type">Y tế</span>
-                    <span class="project-date">11/2019 - 2/2020</span>
-                </div>
-                <h3 class="project-title">Performance Testing Suite</h3>
-                <div class="project-role">Vai trò: Performance Tester</div>
-                <p class="project-description">Triển khai kiểm thử hiệu năng toàn diện cho nền tảng y tế. Thực hiện
-                    stress testing, load testing, benchmark testing và endurance testing sử dụng JMeter 5.x.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">JMeter 5.x</span>
-                    <span class="tech-tag">Microservices</span>
-                    <span class="tech-tag">Confluence</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="project-type">Hàng không</span>
-                    <span class="project-date">8/2019 - 11/2019</span>
-                </div>
-                <h3 class="project-title">Hệ Thống Quản Lý Chuyến Bay</h3>
-                <div class="project-role">Vai trò: Java Developer</div>
-                <p class="project-description">Phát triển hệ thống quản lý chuyến bay tổng hợp dữ liệu từ 3 hệ thống
-                    khác nhau. Tạo báo cáo và xuất Excel cho chuyến bay nội địa và quốc tế.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">Java</span>
-                    <span class="tech-tag">Spring</span>
-                    <span class="tech-tag">Angular 8</span>
-                    <span class="tech-tag">SQL Server</span>
-                </div>
-            </div>
-
-            <!-- Pet Projects -->
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="project-type">Pet Project - Java</span>
-                    <span class="project-date">Cá nhân</span>
-                </div>
-                <h3 class="project-title">Quản Lý Nhà Thuốc Thú Y</h3>
-                <div class="project-role">Vai trò: Full-Stack Developer</div>
-                <p class="project-description">Xây dựng hệ thống quản lý hoàn chỉnh cho nhà thuốc thú y với theo dõi tồn
-                    kho, quản lý bán hàng và báo cáo. Triển khai trên DigitalOcean.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">Java</span>
-                    <span class="tech-tag">Angular 8</span>
-                    <span class="tech-tag">PostgreSQL</span>
-                    <span class="tech-tag">Linux</span>
-                    <span class="tech-tag">Tomcat</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="project-type">Pet Project - Java</span>
-                    <span class="project-date">Cá nhân</span>
-                </div>
-                <h3 class="project-title">Hệ Thống Quản Lý Giáo Dục</h3>
-                <div class="project-role">Vai trò: Full-Stack Developer</div>
-                <p class="project-description">MockProject quản lí giảng viên, mentor, học viên, lớp học. Hệ thống quản
-                    lý toàn diện cho trung tâm đào tạo với đầy đủ tính năng quản lý lớp học.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">Java</span>
-                    <span class="tech-tag">Spring Boot</span>
-                    <span class="tech-tag">MySQL</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="project-type">Pet Project - C#</span>
-                    <span class="project-date">Cá nhân</span>
-                </div>
-                <h3 class="project-title">Học Tiếng Anh Qua Hình Ảnh</h3>
-                <div class="project-role">Vai trò: Developer</div>
-                <p class="project-description">Phần mềm học phát âm và ghi nhớ từ vựng tiếng Anh qua hình ảnh. Ứng dụng
-                    giúp cải thiện phát âm và mở rộng vốn từ vựng thông qua phương pháp học trực quan.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">C#</span>
-                    <span class="tech-tag">.NET</span>
-                    <span class="tech-tag">WinForms</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="project-type">Pet Project - Java</span>
-                    <span class="project-date">Cá nhân</span>
-                </div>
-                <h3 class="project-title">English Learning Notification</h3>
-                <div class="project-role">Vai trò: Developer</div>
-                <p class="project-description">Ứng dụng học tiếng Anh thông qua thông báo cưỡng bức (force
-                    notification). Giúp người dùng học từ vựng mới mỗi ngày một cách tự động.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">Java</span>
-                    <span class="tech-tag">Swing</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="project-type">Pet Project - C#</span>
-                    <span class="project-date">Cá nhân</span>
-                </div>
-                <h3 class="project-title">Quản Lý Order Nhà Hàng</h3>
-                <div class="project-role">Vai trò: Developer</div>
-                <p class="project-description">Phần mềm quản lý order đồ ăn trong quán coffee/nhà hàng. Hệ thống giúp
-                    quản lý đơn hàng, menu, thanh toán và theo dõi doanh thu.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">C#</span>
-                    <span class="tech-tag">.NET</span>
-                    <span class="tech-tag">SQL Server</span>
+                <div class="certificate-actions">
+                    <input id="certificate-upload" class="visually-hidden" type="file" accept="image/*,.pdf" multiple>
+                    <label class="button button-secondary" for="certificate-upload">Tải chứng chỉ</label>
                 </div>
             </div>
 
-            <div class="project-card">
-                <div class="project-header">
-                    <span class="project-type">Pet Project - C#</span>
-                    <span class="project-date">Cá nhân</span>
+            <div class="certificate-carousel" data-carousel>
+                <button class="carousel-button" type="button" data-carousel-prev aria-label="Chứng chỉ trước">&lt;</button>
+                <div class="certificate-viewport">
+                    <div class="certificate-track" data-carousel-track>
+                        <article class="certificate-slide is-active">
+                            <div class="certificate-preview certificate-placeholder">
+                                <span>FPT</span>
+                            </div>
+                            <div class="certificate-copy">
+                                <p class="eyebrow">Coursera</p>
+                                <h3>Introduction to Cloud Computing</h3>
+                                <time>Coursera certificate</time>
+                                <p>Chứng chỉ Coursera về nền tảng cloud computing.</p>
+                                <a class="button button-primary certificate-link"
+                                    href="https://coursera.org/share/75638132183ef02742c1b67e4a642193" target="_blank"
+                                    rel="noopener">Xem chứng chỉ</a>
+                            </div>
+                        </article>
+                    </div>
                 </div>
-                <h3 class="project-title">Computer Usage Tracker</h3>
-                <div class="project-role">Vai trò: Developer</div>
-                <p class="project-description">Quản lý theo dõi đăng nhập và sử dụng máy tính (Keylogger). Ứng dụng giám
-                    sát hoạt động máy tính, theo dõi thời gian sử dụng.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">C#</span>
-                    <span class="tech-tag">.NET</span>
-                    <span class="tech-tag">Windows API</span>
-                </div>
+                <button class="carousel-button" type="button" data-carousel-next aria-label="Chứng chỉ tiếp theo">&gt;</button>
             </div>
-        </div>
-    </section>
+            <div class="carousel-status" data-carousel-status>1 / 1</div>
+        </section>
 
-    <!-- CERTIFICATES & COURSES -->
-    <section id="certificates">
-        <h2 class="section-title">Chứng Chỉ & Khóa Học</h2>
-        <p class="section-subtitle">Các chứng chỉ và khóa học tôi đã hoàn thành</p>
-
-        <div class="certificates-container">
-            <!-- Template for adding certificates -->
-            <div class="cert-card cert-template">
-                <div class="cert-icon">🎓</div>
-                <div class="cert-content">
-                    <h3 class="cert-title">FPT Software Academy</h3>
-                    <div class="cert-issuer">FPT Software</div>
-                    <div class="cert-date">Tháng 4/2019</div>
-                    <p class="cert-description">Khóa đào tạo chuyên sâu về Java và Spring Framework</p>
-                </div>
-            </div>
-
-            <!-- Add more certificates here using this template:
-            <div class="cert-card">
-                <div class="cert-icon">🎓</div>
-                <div class="cert-content">
-                    <h3 class="cert-title">TÊN CHỨNG CHỈ</h3>
-                    <div class="cert-issuer">TỔ CHỨC PHÁT HÀNH</div>
-                    <div class="cert-date">THỜI GIAN</div>
-                    <p class="cert-description">MÔ TẢ NGẮN GỌN</p>
+        <section id="contact" class="contact-section section-band section-muted">
+            <div class="contact-content">
+                <p class="eyebrow">Liên hệ</p>
+                <h2>Hãy cùng làm việc</h2>
+                <p>Tôi luôn quan tâm đến các dự án và cơ hội mới. Dù bạn có câu hỏi hay chỉ muốn chào hỏi, hãy liên hệ
+                    nhé!</p>
+                <div class="hero-actions">
+                    <a href="https://www.topcv.vn/xem-cv/BgJQD1AKBAYBUFVXW1dSB1YGUFFUBwMNVAJQWw157b"
+                        class="button button-primary" target="_blank" rel="noopener">Xem CV</a>
+                    <a href="https://www.github.com/DangNguyenTH4" class="button button-secondary" target="_blank"
+                        rel="noopener">GitHub</a>
                 </div>
             </div>
-            -->
-        </div>
-
-        <div class="add-cert-guide">
-            <h3>📝 Hướng dẫn thêm chứng chỉ mới:</h3>
-            <p>Tìm phần <code>&lt;!-- Add more certificates here --&gt;</code> và thêm code sau:</p>
-            <pre><code>&lt;div class="cert-card"&gt;
-    &lt;div class="cert-icon"&gt;🎓&lt;/div&gt;
-    &lt;div class="cert-content"&gt;
-        &lt;h3 class="cert-title"&gt;TÊN CHỨNG CHỈ&lt;/h3&gt;
-        &lt;div class="cert-issuer"&gt;TỔ CHỨC&lt;/div&gt;
-        &lt;div class="cert-date"&gt;THỜI GIAN&lt;/div&gt;
-        &lt;p class="cert-description"&gt;MÔ TẢ&lt;/p&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-        <div class="contact-content">
-            <h2 class="section-title">Hãy Cùng Làm Việc</h2>
-            <p class="section-subtitle">
-                Tôi luôn quan tâm đến các dự án và cơ hội mới.
-                Dù bạn có câu hỏi hay chỉ muốn chào hỏi, hãy liên hệ nhé!
-            </p>
-            <div class="hero-cta">
-                <a href="https://www.topcv.vn/xem-cv/BgJQD1AKBAYBUFVXW1dSB1YGUFFUBwMNVAJQWw157b" class="btn btn-primary"
-                    target="_blank">Xem CV</a>
-                <a href="https://www.github.com/DangNguyenTH4" class="btn btn-secondary" target="_blank">GitHub</a>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <script src="script-portfolio.js"></script>
 </body>
