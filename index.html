@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <canvas id="webgl-canvas" aria-hidden="true"></canvas>
     <header class="site-header">
         <nav class="nav-shell" aria-label="Điều hướng chính">
             <a class="logo" href="#top" aria-label="Nguyễn Thế Đăng">NTĐ</a>
@@ -351,7 +352,7 @@
             <div class="section-heading section-heading-row">
                 <div>
                     <p class="eyebrow">Chứng chỉ & Khóa học</p>
-                    <h2>Slide chứng chỉ</h2>
+                    <h2>Certificates</h2>
                 </div>
                 <div class="certificate-actions">
                     <input id="certificate-upload" class="visually-hidden" type="file" accept="image/*,.pdf" multiple>
@@ -365,13 +366,13 @@
                     <div class="certificate-track" data-carousel-track>
                         <article class="certificate-slide is-active">
                             <div class="certificate-preview certificate-placeholder">
-                                <span>FPT</span>
+                                <span>Cloud</span>
                             </div>
                             <div class="certificate-copy">
                                 <p class="eyebrow">Coursera</p>
-                                <h3>Introduction to Cloud Computing</h3>
+                                <h3>Learn Next.js</h3>
                                 <time>Coursera certificate</time>
-                                <p>Chứng chỉ Coursera về nền tảng cloud computing.</p>
+                                <p>Chứng chỉ Coursera cho khóa học Learn Next.js.</p>
                                 <a class="button button-primary certificate-link"
                                     href="https://coursera.org/share/75638132183ef02742c1b67e4a642193" target="_blank"
                                     rel="noopener">Xem chứng chỉ</a>
@@ -400,6 +401,7 @@
         </section>
     </main>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script-portfolio.js"></script>
 </body>
 
