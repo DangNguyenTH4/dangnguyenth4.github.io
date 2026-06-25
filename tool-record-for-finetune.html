@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TTS Recording Studio</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+  :root {
+    --bg: #0f0f11;
+    --surface: #1a1a1f;
+    --surface2: #222228;
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.16);
+    --text: #f0eff4;
+    --text-muted: #8b8a96;
+    --text-dim: #55545e;
+    --red: #e8464a;
+    --red-dim: rgba(232,70,74,0.15);
+    --green: #2cb67d;
+    --green-dim: rgba(44,182,125,0.12);
+    --amber: #f4a742;
+    --amber-dim: rgba(244,167,66,0.12);
+    --accent: #7c6afb;
+    --accent-dim: rgba(124,106,251,0.15);
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+
+  /* ── Layout ─────────────────────────────────── */
+  .app { display: grid; grid-template-columns: 1fr 340px; min-height: 100vh; }
+
+  .left-panel {
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .right-panel { display: flex; flex-direction: column; overflow: hidden; }
+
+  /* ── Top bar ─────────────────────────────────── */
+  .topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    flex-shrink: 0;
+  }
+
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--red);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-icon svg { width: 16px; height: 16px; fill: white; }
+  .logo-text { font-size: 15px; font-weight: 600; letter-spacing: -0.02em; }
+  .logo-sub { font-size: 11px; color: var(--text-muted); }
+
+  .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+
+  .pill {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 11px; font-weight: 500;
+    padding: 3px 10px; border-radius: 99px;
+    border: 1px solid;
+  }
+  .pill-green { background: var(--green-dim); border-color: rgba(44,182,125,0.3); color: var(--green); }
+  .pill-red   { background: var(--red-dim);   border-color: rgba(232,70,74,0.3);  color: var(--red); }
+  .pill-amber { background: var(--amber-dim); border-color: rgba(244,167,66,0.3); color: var(--amber); }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .dot-pulse { animation: pulse 1.2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  /* ── Stats ───────────────────────────────────── */
+  .stats-bar {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .stat-cell {
+    padding: 14px 20px;
+    border-right: 1px solid var(--border);
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-val { font-size: 20px; font-weight: 600; letter-spacing: -0.03em; color: var(--text); }
+  .stat-lbl { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+
+  /* ── Progress ────────────────────────────────── */
+  .progress-wrap { padding: 12px 20px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+  .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .progress-label { font-size: 12px; color: var(--text-muted); }
+  .progress-val { font-size: 12px; font-weight: 500; color: var(--green); }
+  .progress-track { height: 4px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--green); border-radius: 2px; transition: width 0.4s ease; width: 0%; }
+
+  /* ── Main record section ─────────────────────── */
+  .record-section { flex: 1; padding: 24px; overflow-y: auto; }
+
+  .section-title {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  /* ── Presets ─────────────────────────────────── */
+  .presets { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .preset {
+    font-size: 12px; padding: 4px 10px;
+    border-radius: 99px;
+    border: 1px solid var(--border);
+    background: transparent; color: var(--text-muted);
+    cursor: pointer; transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .preset:hover { background: var(--surface2); color: var(--text); border-color: var(--border-hover); }
+
+  /* ── Script input ────────────────────────────── */
+  .script-box {
+    position: relative; margin-bottom: 12px;
+  }
+  textarea {
+    width: 100%; min-height: 90px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); color: var(--text);
+    font-family: inherit; font-size: 15px; line-height: 1.6;
+    padding: 12px 14px; resize: vertical;
+    transition: border-color 0.15s;
+  }
+  textarea:focus { outline: none; border-color: var(--accent); }
+  textarea::placeholder { color: var(--text-dim); }
+
+  .char-count {
+    position: absolute; right: 10px; bottom: 8px;
+    font-size: 11px; color: var(--text-dim); pointer-events: none;
+  }
+
+  /* ── Tip ─────────────────────────────────────── */
+  .tip {
+    font-size: 12px; color: var(--text-muted);
+    background: var(--surface2); border-radius: var(--radius-sm);
+    padding: 8px 12px; margin-bottom: 14px; line-height: 1.55;
+  }
+  .tip b { color: var(--amber); font-weight: 500; }
+
+  /* ── Waveform ────────────────────────────────── */
+  .waveform-wrap {
+    height: 56px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    display: flex; align-items: center; justify-content: center;
+    gap: 2px; padding: 0 12px;
+    margin-bottom: 14px; overflow: hidden;
+  }
+  .wv-idle { font-size: 12px; color: var(--text-dim); }
+  .wv-bar {
+    width: 3px; border-radius: 2px;
+    background: var(--border-hover);
+    min-height: 4px; transition: height 0.07s;
+  }
+  .wv-bar.live { background: var(--red); }
+
+  /* ── Controls ────────────────────────────────── */
+  .controls { display: flex; align-items: center; gap: 10px; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border-radius: var(--radius-sm);
+    font-size: 13px; font-weight: 500;
+    border: 1px solid var(--border);
+    background: transparent; color: var(--text);
+    cursor: pointer; transition: all 0.15s;
+  }
+  .btn:hover { background: var(--surface2); border-color: var(--border-hover); }
+  .btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .btn:disabled:hover { background: transparent; border-color: var(--border); }
+
+  .btn-rec { border-color: var(--red); color: var(--red); }
+  .btn-rec:hover { background: var(--red-dim); border-color: var(--red); }
+  .btn-rec.active { background: var(--red-dim); }
+
+  .btn-save { border-color: var(--green); color: var(--green); }
+  .btn-save:hover { background: var(--green-dim); border-color: var(--green); }
+
+  .btn-accent { border-color: var(--accent); color: var(--accent); }
+  .btn-accent:hover { background: var(--accent-dim); }
+
+  .timer {
+    font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums;
+    color: var(--text-muted); min-width: 44px;
+  }
+  .timer.live { color: var(--red); }
+
+  .spacer { flex: 1; }
+
+  /* ── Keyboard hint ───────────────────────────── */
+  .kbd-hint {
+    font-size: 11px; color: var(--text-dim);
+    margin-top: 10px; display: flex; gap: 14px; flex-wrap: wrap;
+  }
+  kbd {
+    display: inline-block;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 4px; padding: 1px 5px; font-size: 10px; font-family: monospace;
+  }
+
+  /* ── Right panel: clips list ─────────────────── */
+  .rp-header {
+    display: flex; align-items: center; gap: 8px;
+    padding: 16px 16px 12px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .rp-title { font-size: 13px; font-weight: 600; }
+  .rp-count {
+    font-size: 11px; font-weight: 500;
+    background: var(--surface2); color: var(--text-muted);
+    padding: 2px 8px; border-radius: 99px; border: 1px solid var(--border);
+  }
+
+  .clips-list { flex: 1; overflow-y: auto; padding: 8px; }
+
+  .clip-empty {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; height: 100%; gap: 8px;
+    color: var(--text-dim); font-size: 13px; text-align: center;
+    padding: 24px;
+  }
+  .clip-empty svg { opacity: 0.3; }
+
+  .clip-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 10px 12px;
+    margin-bottom: 6px; cursor: default;
+    transition: border-color 0.15s;
+  }
+  .clip-card:hover { border-color: var(--border-hover); }
+
+  .clip-top { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .clip-num {
+    font-size: 10px; font-weight: 600; font-variant-numeric: tabular-nums;
+    color: var(--text-dim); min-width: 32px;
+  }
+  .clip-dur-badge {
+    margin-left: auto;
+    font-size: 11px; font-weight: 500;
+    color: var(--text-muted);
+    background: var(--surface2); border: 1px solid var(--border);
+    padding: 2px 7px; border-radius: 99px;
+  }
+  .clip-actions { display: flex; gap: 4px; }
+  .clip-act-btn {
+    width: 26px; height: 26px; border-radius: 5px;
+    background: transparent; border: 1px solid var(--border);
+    color: var(--text-muted); font-size: 13px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.12s;
+  }
+  .clip-act-btn:hover { background: var(--surface2); color: var(--text); }
+  .clip-act-btn.danger:hover { background: var(--red-dim); color: var(--red); border-color: rgba(232,70,74,0.4); }
+  .clip-text-preview {
+    font-size: 12px; line-height: 1.45; color: var(--text-muted);
+    overflow: hidden; display: -webkit-box;
+    -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  }
+  .clip-text-preview.no-text { color: var(--text-dim); font-style: italic; }
+
+  /* ── Export bar ──────────────────────────────── */
+  .export-bar {
+    padding: 12px;
+    border-top: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: 8px;
+    flex-shrink: 0;
+  }
+  .export-label { font-size: 11px; color: var(--text-dim); text-align: center; }
+
+  .export-row { display: flex; gap: 6px; }
+  .export-btn {
+    flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 9px 12px; border-radius: var(--radius-sm);
+    font-size: 12px; font-weight: 500;
+    border: 1px solid var(--border); background: transparent; color: var(--text-muted);
+    cursor: pointer; transition: all 0.15s;
+  }
+  .export-btn:hover { background: var(--surface2); color: var(--text); border-color: var(--border-hover); }
+  .export-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .export-btn.primary {
+    border-color: var(--accent); color: var(--accent);
+  }
+  .export-btn.primary:hover { background: var(--accent-dim); }
+  .export-btn:disabled:hover { background: transparent; }
+
+  /* ── No-support banner ───────────────────────── */
+  .no-support {
+    display: none;
+    background: var(--red-dim); border: 1px solid rgba(232,70,74,0.3);
+    border-radius: var(--radius); padding: 12px 14px;
+    font-size: 13px; color: var(--red); margin-bottom: 14px;
+  }
+
+  /* ── Toast ───────────────────────────────────── */
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 10px 18px;
+    font-size: 13px; color: var(--text);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    transition: transform 0.25s ease, opacity 0.25s;
+    opacity: 0; pointer-events: none; z-index: 999;
+    white-space: nowrap;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+  /* ── Scrollbar ───────────────────────────────── */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 3px; }
+
+  /* ── Responsive ──────────────────────────────── */
+  @media (max-width: 680px) {
+    .app { grid-template-columns: 1fr; grid-template-rows: auto 1fr auto; }
+    .left-panel { border-right: none; border-bottom: 1px solid var(--border); }
+    .right-panel { max-height: 40vh; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ══ LEFT PANEL ══════════════════════════════ -->
+  <div class="left-panel">
+
+    <!-- Topbar -->
+    <div class="topbar">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3zm0 2a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0V5a1 1 0 0 0-1-1zm7 6a1 1 0 0 1 1 1 8 8 0 0 1-7 7.94V21h2a1 1 0 1 1 0 2H9a1 1 0 1 1 0-2h2v-2.06A8 8 0 0 1 4 11a1 1 0 1 1 2 0 6 6 0 1 0 12 0 1 1 0 0 1 1-1z"/></svg>
+        </div>
+        <div>
+          <div class="logo-text">TTS Recording Studio</div>
+          <div class="logo-sub">Ghi âm + tạo dataset tự động</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="pill pill-green" id="statusPill">
+          <span class="dot"></span>
+          <span id="statusText">Sẵn sàng</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat-cell">
+        <div class="stat-val" id="statClips">0</div>
+        <div class="stat-lbl">Tổng clips</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-val" id="statDur">0s</div>
+        <div class="stat-lbl">Thời lượng</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-val" id="statAvg">—</div>
+        <div class="stat-lbl">Trung bình</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-val" id="statGoal">0%</div>
+        <div class="stat-lbl">Mục tiêu 30 phút</div>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-wrap">
+      <div class="progress-header">
+        <span class="progress-label">Tiến độ thu âm</span>
+        <span class="progress-val" id="progressText">0 / 30:00</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <!-- Main record area -->
+    <div class="record-section">
+
+      <!-- Preset phrases -->
+      <div class="section-title">Câu mẫu nhanh</div>
+      <div class="presets" id="presetsContainer"></div>
+
+      <!-- Script input -->
+      <div class="section-title">Câu cần đọc</div>
+      <div class="script-box">
+        <textarea id="scriptInput" placeholder="Nhập câu cần đọc vào đây...&#10;&#10;Ví dụ: Xin chào, tôi là trợ lý AI tiếng Việt của bạn."></textarea>
+        <span class="char-count" id="charCount">0 ký tự</span>
+      </div>
+
+      <!-- Tip -->
+      <div class="tip">
+        <b>Mẹo:</b> Mỗi clip nên dài <b>3–10 giây</b> (~1–2 câu). Nói rõ ràng, tốc độ tự nhiên. Phòng yên tĩnh, mic cách miệng 15–20 cm.
+      </div>
+
+      <!-- No support warning -->
+      <div class="no-support" id="noSupport">
+        ⚠️ Trình duyệt này không hỗ trợ ghi âm. Vui lòng dùng Chrome, Edge hoặc Firefox.
+      </div>
+
+      <!-- Waveform -->
+      <div class="waveform-wrap" id="waveform">
+        <span class="wv-idle">Bấm ghi âm để bắt đầu</span>
+      </div>
+
+      <!-- Controls -->
+      <div class="controls">
+        <button class="btn btn-rec" id="recBtn" onclick="toggleRecord()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg>
+          <span id="recBtnLabel">Ghi âm</span>
+        </button>
+        <span class="timer" id="timerDisplay">0:00</span>
+        <div class="spacer"></div>
+        <button class="btn btn-save" id="saveBtn" onclick="saveClip()" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Lưu clip
+        </button>
+      </div>
+
+      <!-- Keyboard hints -->
+      <div class="kbd-hint">
+        <span><kbd>Space</kbd> bắt đầu / dừng ghi</span>
+        <span><kbd>Enter</kbd> lưu clip</span>
+        <span><kbd>Esc</kbd> hủy</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ RIGHT PANEL ═════════════════════════════ -->
+  <div class="right-panel">
+
+    <div class="rp-header">
+      <span class="rp-title">Clips đã thu</span>
+      <span class="rp-count" id="rpCount">0</span>
+      <div class="spacer"></div>
+      <button class="btn" style="padding:5px 10px; font-size:11px;" onclick="clearAll()" title="Xóa tất cả">Xóa hết</button>
+    </div>
+
+    <div class="clips-list" id="clipsList">
+      <div class="clip-empty" id="clipEmpty">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+        </svg>
+        <p>Chưa có clip nào</p>
+        <p style="font-size:11px;">Bắt đầu ghi âm để tạo dataset</p>
+      </div>
+    </div>
+
+    <div class="export-bar">
+      <div class="export-label" id="exportLabel">Thu âm xong → xuất file để finetune</div>
+      <div class="export-row">
+        <button class="export-btn" id="exportCsvBtn" onclick="exportCSV()" disabled>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          metadata.csv
+        </button>
+        <button class="export-btn primary" id="exportZipBtn" onclick="exportZip()" disabled>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Tải ZIP đầy đủ
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── Data ─────────────────────────────────────────
+const PRESETS = [
+  "Xin chào, tôi là trợ lý AI tiếng Việt.",
+  "Hôm nay thời tiết Hà Nội rất đẹp.",
+  "Bạn cần hỗ trợ thêm điều gì không?",
+  "Cảm ơn bạn đã sử dụng dịch vụ.",
+  "Vui lòng xác nhận thông tin bên dưới.",
+  "Chúc bạn một ngày làm việc hiệu quả.",
+  "Đơn hàng của bạn đang được xử lý.",
+  "Kết nối thành công với máy chủ.",
+  "Hệ thống đang khởi động, vui lòng chờ.",
+  "Báo cáo đã được gửi thành công.",
+];
+
+let clips = [];
+let mediaRecorder = null;
+let audioChunks = [];
+let recStartTime = null;
+let timerInterval = null;
+let waveInterval = null;
+let analyser = null;
+let audioCtx = null;
+let micStream = null;
+let pendingBlob = null;
+let pendingDuration = 0;
+let isRecording = false;
+
+// ── Init presets ──────────────────────────────────
+(function initPresets() {
+  const c = document.getElementById('presetsContainer');
+  PRESETS.forEach(p => {
+    const b = document.createElement('button');
+    b.className = 'preset';
+    b.textContent = p.length > 36 ? p.slice(0, 34) + '…' : p;
+    b.title = p;
+    b.onclick = () => {
+      document.getElementById('scriptInput').value = p;
+      updateCharCount();
+    };
+    c.appendChild(b);
+  });
+})();
+
+// ── Character count ───────────────────────────────
+document.getElementById('scriptInput').addEventListener('input', updateCharCount);
+function updateCharCount() {
+  const n = document.getElementById('scriptInput').value.length;
+  document.getElementById('charCount').textContent = n + ' ký tự';
+}
+
+// ── Keyboard shortcuts ────────────────────────────
+document.addEventListener('keydown', e => {
+  const tag = document.activeElement.tagName;
+  if (tag === 'TEXTAREA' || tag === 'INPUT') return;
+  if (e.code === 'Space')  { e.preventDefault(); toggleRecord(); }
+  if (e.code === 'Enter')  { e.preventDefault(); saveClip(); }
+  if (e.code === 'Escape') { e.preventDefault(); cancelRecord(); }
+});
+
+// ── Recording ─────────────────────────────────────
+async function toggleRecord() {
+  if (isRecording) stopRecord();
+  else await startRecord();
+}
+
+async function startRecord() {
+  if (!navigator.mediaDevices || !window.MediaRecorder) {
+    document.getElementById('noSupport').style.display = 'block';
+    return;
+  }
+  try {
+    micStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+  } catch(e) {
+    document.getElementById('noSupport').style.display = 'block';
+    return;
+  }
+
+  // Audio analyser for waveform
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const src = audioCtx.createMediaStreamSource(micStream);
+  analyser = audioCtx.createAnalyser();
+  analyser.fftSize = 256;
+  src.connect(analyser);
+
+  audioChunks = [];
+  pendingBlob = null;
+
+  // Pick supported mimeType
+  const mime = ['audio/webm;codecs=opus','audio/webm','audio/ogg','audio/mp4','']
+    .find(m => !m || MediaRecorder.isTypeSupported(m)) || '';
+  mediaRecorder = new MediaRecorder(micStream, mime ? { mimeType: mime } : {});
+  mediaRecorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
+  mediaRecorder.onstop = () => {
+    pendingBlob = new Blob(audioChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
+    pendingDuration = (Date.now() - recStartTime) / 1000;
+    document.getElementById('saveBtn').disabled = false;
+    setStatus('Đã ghi — lưu clip?', 'amber');
+  };
+
+  mediaRecorder.start(100);
+  recStartTime = Date.now();
+  isRecording = true;
+
+  // UI
+  const btn = document.getElementById('recBtn');
+  btn.classList.add('active');
+  btn.innerHTML = `<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" style="animation:pulse 1s infinite"><rect x="6" y="6" width="12" height="12" rx="2"/></svg><span>Dừng ghi</span>`;
+  document.getElementById('saveBtn').disabled = true;
+  setStatus('Đang ghi…', 'red');
+
+  // Timer
+  timerInterval = setInterval(() => {
+    const s = (Date.now() - recStartTime) / 1000;
+    const el = document.getElementById('timerDisplay');
+    el.textContent = fmtTime(s);
+    el.classList.add('live');
+  }, 100);
+
+  drawWaveform(true);
+}
+
+function stopRecord() {
+  if (!isRecording) return;
+  isRecording = false;
+  if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+  cleanupMic();
+  clearInterval(timerInterval);
+  clearInterval(waveInterval);
+
+  const btn = document.getElementById('recBtn');
+  btn.classList.remove('active');
+  btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg><span>Ghi lại</span>`;
+  document.getElementById('timerDisplay').classList.remove('live');
+  drawWaveform(false);
+}
+
+function cancelRecord() {
+  stopRecord();
+  pendingBlob = null;
+  pendingDuration = 0;
+  document.getElementById('saveBtn').disabled = true;
+  document.getElementById('timerDisplay').textContent = '0:00';
+  document.getElementById('timerDisplay').classList.remove('live');
+  setStatus('Sẵn sàng', 'green');
+}
+
+function cleanupMic() {
+  if (micStream) { micStream.getTracks().forEach(t => t.stop()); micStream = null; }
+  if (audioCtx)  { audioCtx.close().catch(()=>{}); audioCtx = null; analyser = null; }
+}
+
+// ── Save clip ─────────────────────────────────────
+function saveClip() {
+  if (!pendingBlob) return;
+  const text = document.getElementById('scriptInput').value.trim();
+  const idx = clips.length + 1;
+  const ext = pendingBlob.type.includes('ogg') ? 'ogg'
+            : pendingBlob.type.includes('mp4') ? 'm4a' : 'webm';
+  const fname = 'clip_' + String(idx).padStart(5, '0') + '.' + ext;
+
+  clips.push({ id: idx, filename: fname, text, duration: pendingDuration, blob: pendingBlob });
+  pendingBlob = null;
+  pendingDuration = 0;
+
+  document.getElementById('saveBtn').disabled = true;
+  document.getElementById('scriptInput').value = '';
+  updateCharCount();
+  document.getElementById('timerDisplay').textContent = '0:00';
+  document.getElementById('timerDisplay').classList.remove('live');
+
+  const btn = document.getElementById('recBtn');
+  btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg><span>Ghi âm</span>`;
+
+  renderClips();
+  updateStats();
+  setStatus('Sẵn sàng', 'green');
+  showToast('✅ Clip #' + String(idx).padStart(3,'0') + ' đã lưu — ' + pendingDurStr(clips[idx-1].duration));
+}
+
+function pendingDurStr(d) { return d.toFixed(1) + 's'; }
+
+// ── Play / delete ─────────────────────────────────
+function playClip(i) {
+  const url = URL.createObjectURL(clips[i].blob);
+  const a = new Audio(url);
+  a.play().catch(()=>{});
+  a.onended = () => URL.revokeObjectURL(url);
+}
+
+function deleteClip(i) {
+  const n = clips[i].id;
+  clips.splice(i, 1);
+  renderClips();
+  updateStats();
+  showToast('🗑 Clip #' + String(n).padStart(3,'0') + ' đã xóa');
+}
+
+function clearAll() {
+  if (!clips.length) return;
+  if (!confirm('Xóa tất cả ' + clips.length + ' clips?')) return;
+  clips = [];
+  renderClips();
+  updateStats();
+  showToast('🗑 Đã xóa tất cả clips');
+}
+
+// ── Render clips ──────────────────────────────────
+function renderClips() {
+  const list = document.getElementById('clipsList');
+  const empty = document.getElementById('clipEmpty');
+  document.getElementById('rpCount').textContent = clips.length;
+
+  if (!clips.length) {
+    if (!empty) {
+      list.innerHTML = '';
+      const e = document.createElement('div');
+      e.className = 'clip-empty'; e.id = 'clipEmpty';
+      e.innerHTML = `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg><p>Chưa có clip nào</p><p style="font-size:11px;">Bắt đầu ghi âm để tạo dataset</p>`;
+      list.appendChild(e);
+    }
+    return;
+  }
+
+  list.innerHTML = '';
+  clips.forEach((c, i) => {
+    const d = document.createElement('div');
+    d.className = 'clip-card';
+    d.innerHTML = `
+      <div class="clip-top">
+        <span class="clip-num">#${String(c.id).padStart(3,'0')}</span>
+        <span class="clip-dur-badge">${c.duration.toFixed(1)}s</span>
+        <div class="clip-actions">
+          <button class="clip-act-btn" onclick="playClip(${i})" title="Nghe lại">▶</button>
+          <button class="clip-act-btn danger" onclick="deleteClip(${i})" title="Xóa">✕</button>
+        </div>
+      </div>
+      <div class="clip-text-preview ${c.text ? '' : 'no-text'}">${c.text || 'Không có text'}</div>
+    `;
+    list.appendChild(d);
+  });
+  list.scrollTop = list.scrollHeight;
+}
+
+// ── Stats ─────────────────────────────────────────
+function updateStats() {
+  const n = clips.length;
+  const totalSec = clips.reduce((a, c) => a + c.duration, 0);
+  const avg = n ? totalSec / n : 0;
+  const GOAL = 30 * 60;
+  const pct = Math.min(100, Math.round(totalSec / GOAL * 100));
+
+  document.getElementById('statClips').textContent = n;
+  document.getElementById('statDur').textContent = totalSec >= 60 ? (totalSec/60).toFixed(1)+'m' : Math.round(totalSec)+'s';
+  document.getElementById('statAvg').textContent = n ? avg.toFixed(1)+'s' : '—';
+  document.getElementById('statGoal').textContent = pct + '%';
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = fmtTime(totalSec) + ' / 30:00';
+
+  const hasCl = n > 0;
+  document.getElementById('exportCsvBtn').disabled = !hasCl;
+  document.getElementById('exportZipBtn').disabled = !hasCl;
+  document.getElementById('exportLabel').textContent = hasCl
+    ? n + ' clips · ' + fmtTime(totalSec) + ' · Sẵn sàng xuất'
+    : 'Thu âm xong → xuất file để finetune';
+}
+
+// ── Waveform ──────────────────────────────────────
+function drawWaveform(active) {
+  const wv = document.getElementById('waveform');
+  if (!active) {
+    wv.innerHTML = '<span class="wv-idle">Bấm ghi âm để bắt đầu</span>';
+    clearInterval(waveInterval);
+    return;
+  }
+  wv.innerHTML = '';
+  const N = 48;
+  const bars = [];
+  for (let i = 0; i < N; i++) {
+    const b = document.createElement('div');
+    b.className = 'wv-bar live';
+    b.style.height = '4px';
+    wv.appendChild(b);
+    bars.push(b);
+  }
+  const data = analyser ? new Uint8Array(analyser.fftSize) : null;
+  waveInterval = setInterval(() => {
+    if (analyser && data) {
+      analyser.getByteTimeDomainData(data);
+      for (let i = 0; i < N; i++) {
+        const v = Math.abs(data[Math.floor(i * data.length / N)] - 128) / 128;
+        bars[i].style.height = Math.max(4, Math.round(v * 44)) + 'px';
+      }
+    } else {
+      bars.forEach(b => b.style.height = (4 + Math.random() * 18) + 'px');
+    }
+  }, 70);
+}
+
+// ── Export ────────────────────────────────────────
+function exportCSV() {
+  if (!clips.length) return;
+  let csv = 'audio_path,text,duration\n';
+  clips.forEach(c => {
+    const safe = (c.text || '').replace(/"/g, '""');
+    csv += `audio/${c.filename},"${safe}",${c.duration.toFixed(2)}\n`;
+  });
+  downloadBlob(new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' }), 'metadata.csv');
+  showToast('📄 metadata.csv đã tải xuống');
+}
+
+async function exportZip() {
+  if (!clips.length || typeof JSZip === 'undefined') return;
+  const btn = document.getElementById('exportZipBtn');
+  btn.innerHTML = '⏳ Đang tạo ZIP…';
+  btn.disabled = true;
+
+  try {
+    const zip = new JSZip();
+    const folder = zip.folder('audio');
+    let csv = 'audio_path,text,duration\n';
+
+    for (const c of clips) {
+      folder.file(c.filename, await c.blob.arrayBuffer());
+      const safe = (c.text || '').replace(/"/g, '""');
+      csv += `audio/${c.filename},"${safe}",${c.duration.toFixed(2)}\n`;
+    }
+    zip.file('metadata.csv', '\uFEFF' + csv);
+    zip.file('README.txt', [
+      'TTS Dataset — VieNeu-TTS Finetune',
+      '==================================',
+      'Clips: ' + clips.length,
+      'Duration: ' + fmtTime(clips.reduce((a,c)=>a+c.duration,0)),
+      'Created: ' + new Date().toLocaleString('vi-VN'),
+      '',
+      'Cấu trúc:',
+      '  audio/clip_00001.webm  — file âm thanh',
+      '  metadata.csv           — audio_path, text, duration',
+      '',
+      'Upload lên Kaggle → finetune VieNeu-TTS theo hướng dẫn.',
+    ].join('\n'));
+
+    const blob = await zip.generateAsync({ type:'blob', compression:'DEFLATE', compressionOptions:{level:6} });
+    downloadBlob(blob, 'tts_dataset.zip');
+    showToast('📦 tts_dataset.zip đã tải xuống (' + clips.length + ' clips)');
+  } finally {
+    btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Tải ZIP đầy đủ`;
+    btn.disabled = clips.length === 0;
+  }
+}
+
+function downloadBlob(blob, name) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = name; a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+}
+
+// ── Status pill ───────────────────────────────────
+function setStatus(text, color) {
+  const pill = document.getElementById('statusPill');
+  const dot  = pill.querySelector('.dot');
+  document.getElementById('statusText').textContent = text;
+  pill.className = 'pill pill-' + color;
+  dot.className = 'dot' + (color === 'red' ? ' dot-pulse' : '');
+}
+
+// ── Toast ─────────────────────────────────────────
+let toastTimer = null;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ── Helpers ───────────────────────────────────────
+function fmtTime(sec) {
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return m + ':' + String(s).padStart(2,'0');
+}
+
+// ── Init ──────────────────────────────────────────
+updateStats();
+renderClips();
+</script>
+</body>
+</html>
